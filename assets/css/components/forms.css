@@ -1,0 +1,93 @@
+/* forms.css - Shared form fields, labels, validation, and control states. */
+/* Sections: Input/textarea/select base styles, labels, errors, and grouped control layouts. */
+
+/* Core form-control styles */
+
+/* Primary style rules */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.form-label {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text);
+}
+
+.form-hint {
+  font-size: var(--text-xs);
+  color: var(--clr-text-muted);
+}
+
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--clr-surface);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--clr-text);
+  outline: none;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+  appearance: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--clr-text-muted);
+}
+
+/* Interaction and state styles */
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--clr-brand);
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+
+.star-rating {
+  display: flex;
+  gap: var(--sp-1);
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--sp-1);
+  color: var(--clr-stone-300);
+  transition: color var(--transition-fast), transform var(--duration-fast) var(--ease-spring);
+}
+
+.star-btn:hover,
+.star-btn.is-active {
+  color: var(--clr-amber-400);
+  transform: scale(1.2);
+}
+
+.star-btn .material-icons {
+  font-size: 28px;
+}
+
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}

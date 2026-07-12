@@ -1,0 +1,155 @@
+/* reset.css - Cross-browser reset to normalize default element rendering. */
+/* Sections: Element normalization, default margin/padding reset, and baseline media/form behavior. */
+
+/* Core reset rules */
+
+*,
+*::before,
+/* Primary style rules */
+
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+
+html {
+  scroll-behavior: auto;  
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  hanging-punctuation: first last;
+}
+
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  text-rendering: optimizeSpeed;
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+
+ul,
+ol {
+  list-style: none;
+}
+
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+
+p {
+  text-wrap: pretty;
+  max-width: 65ch;
+}
+
+
+/* Interaction and state styles */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--clr-brand);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-sm);
+}
+
+
+svg {
+  overflow: visible;
+}
+
+
+[hidden] {
+  display: none !important;
+}
+
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

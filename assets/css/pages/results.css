@@ -1,0 +1,240 @@
+/* results.css - Results page verdict panels, confidence display, and CTAs. */
+/* Sections: Verdict card, confidence meter, recommendations list, and results action area. */
+
+/* Core results-page styles */
+
+/* Primary style rules */
+
+.results-page {
+  padding-top: calc(var(--header-height) + var(--sp-4));
+  padding-bottom: var(--sp-16);
+}
+
+
+.result-image-wrap {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto var(--sp-6);
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background: var(--clr-stone-100);
+  position: relative;
+}
+
+.result-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+
+.verdict-card {
+  border-radius: var(--radius-2xl);
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+  margin-bottom: var(--sp-6);
+}
+
+.verdict-card--healthy {
+  background: var(--clr-success-bg);
+  border: 1.5px solid var(--clr-primary-200);
+}
+
+.verdict-card--infected {
+  background: var(--clr-danger-bg);
+  border: 1.5px solid var(--clr-red-200);
+}
+
+.verdict-card--uncertain {
+  background: var(--clr-warning-bg);
+  border: 1.5px solid var(--clr-amber-200);
+}
+
+.verdict-card--shaka {
+  background: var(--clr-warning-bg);
+  border: 1.5px solid var(--clr-orange-300);
+}
+
+.verdict-icon {
+  font-size: 56px !important;
+  margin-bottom: var(--sp-3);
+}
+
+.verdict-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--sp-2);
+}
+
+.verdict-card--healthy  .verdict-title { color: var(--clr-primary-800); }
+.verdict-card--infected .verdict-title { color: var(--clr-red-700); }
+.verdict-card--uncertain .verdict-title { color: var(--clr-amber-700); }
+.verdict-card--shaka .verdict-title { color: var(--clr-orange-700); }
+
+
+.confidence-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-2);
+}
+
+.confidence-label {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--clr-text-secondary);
+  max-width: none;
+}
+
+.confidence-value {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-bold);
+  color: var(--clr-text);
+}
+
+.confidence-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--clr-stone-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--sp-5);
+}
+
+.confidence-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--clr-brand);
+  transition: width 800ms var(--ease-out);
+}
+
+.confidence-bar-fill--infected { background: var(--clr-red-500); }
+.confidence-bar-fill--uncertain { background: var(--clr-amber-500); }
+
+
+.recommendation-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-5) var(--sp-5);
+  margin-bottom: var(--sp-4);
+}
+
+.recommendation-title {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.recommendation-title .material-icons { font-size: 18px; color: var(--clr-brand); }
+
+.recommendation-text {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+}
+
+.detail-rec-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: var(--fw-medium);
+  color: var(--clr-text-muted);
+  text-align: left;
+  margin-top: var(--sp-2);
+  margin-bottom: 0;
+  line-height: 1.15;
+  opacity: 0.9;
+}
+
+.detail-rec-date-icon {
+  font-size: 13px !important;
+  color: var(--clr-text-muted);
+  line-height: 1;
+  transform: translateY(-0.5px);
+}
+
+
+.verdict-message {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-relaxed);
+  margin-top: var(--sp-2);
+  margin-bottom: var(--sp-4);
+  max-width: none;
+}
+
+.verdict-card--healthy  .verdict-message { color: var(--clr-primary-700); }
+.verdict-card--infected .verdict-message { color: var(--clr-red-700); }
+.verdict-card--uncertain .verdict-message { color: var(--clr-amber-700); }
+.verdict-card--shaka .verdict-message { color: var(--clr-orange-700); }
+
+
+.recommendation-tips-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: 0;
+  margin: 0;
+}
+
+.recommendation-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+.recommendation-tip::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  border-radius: 50%;
+  background: var(--clr-brand);
+  margin-top: 7px;
+}
+
+
+.result-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  background: var(--clr-amber-50);
+  border: 1.5px solid var(--clr-amber-200);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-4) var(--sp-5);
+  margin-top: var(--sp-4);
+}
+
+.result-disclaimer[hidden] { display: none; }
+
+.disclaimer-icon {
+  font-size: 20px !important;
+  color: var(--clr-amber-600);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.disclaimer-text {
+  font-size: var(--text-xs);
+  color: var(--clr-amber-700);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+}

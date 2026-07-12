@@ -1,0 +1,162 @@
+/* base.css - Global typography, base elements, and shared utility foundations. */
+/* Sections: Base text rhythm, semantic elements, shared helpers, and accessibility defaults. */
+
+/* Core base element styles */
+
+/* Primary style rules */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--fw-normal);
+  line-height: var(--lh-relaxed);
+  color: var(--clr-text);
+  background-color: var(--clr-bg);
+  
+  visibility: hidden;
+}
+
+body.ready {
+  visibility: visible;
+}
+
+
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--sp-4);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--clr-brand);
+  color: var(--clr-text-inverse);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  border-radius: var(--radius-base);
+  text-decoration: none;
+  z-index: var(--z-tooltip);
+  transition: top var(--transition-fast);
+}
+
+/* Interaction and state styles */
+
+.skip-link:focus {
+  top: var(--sp-4);
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  color: var(--clr-text);
+  letter-spacing: var(--ls-tight);
+}
+
+h1 { font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl)); }
+h2 { font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl)); }
+h3 { font-size: clamp(var(--text-xl), 3vw, var(--text-2xl)); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+
+
+p {
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-relaxed);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: var(--lh-relaxed);
+  color: var(--clr-text-secondary);
+}
+
+strong { font-weight: var(--fw-semibold); }
+em     { font-style: italic; }
+
+small {
+  font-size: var(--text-sm);
+  color: var(--clr-text-muted);
+}
+
+
+
+a {
+  color: var(--clr-brand);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--clr-brand-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+
+hr {
+  border: none;
+  border-top: 1px solid var(--clr-border);
+  margin: var(--sp-6) 0;
+}
+
+
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+  color: var(--clr-text);
+}
+
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-surface-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-stone-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-stone-400);
+}
+
+
+
+::selection {
+  background: var(--clr-primary-200);
+  color: var(--clr-primary-900);
+}
+
+
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+img[data-interactive] {
+  pointer-events: auto;
+}
+
+
+
+.focus-ring:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}

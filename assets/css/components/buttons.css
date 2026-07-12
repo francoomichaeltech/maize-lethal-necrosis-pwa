@@ -1,0 +1,241 @@
+/* buttons.css - Reusable button styles, sizes, and interactive states. */
+/* Sections: Button base API, visual variants, sizing presets, and hover/active/disabled states. */
+
+/* Core button styles */
+
+/* Primary style rules */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-full);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--duration-fast) var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Interaction and state styles */
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+
+.btn .material-icons,
+.btn svg {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+
+
+.btn--sm {
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--text-xs);
+  gap: var(--sp-1);
+}
+
+.btn--sm .material-icons,
+.btn--sm svg {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.btn--lg {
+  padding: var(--sp-4) var(--sp-8);
+  font-size: var(--text-base);
+}
+
+.btn--lg .material-icons,
+.btn--lg svg {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+
+
+.btn--primary {
+  background: var(--clr-brand);
+  color: var(--clr-text-inverse);
+  border-color: var(--clr-brand);
+}
+
+.btn--primary:hover {
+  background: var(--clr-brand-hover);
+  border-color: var(--clr-brand-hover);
+  box-shadow: var(--shadow-brand);
+  text-decoration: none;
+  color: var(--clr-text-inverse);
+}
+
+.btn--primary:active {
+  background: var(--clr-brand-active);
+  box-shadow: none;
+}
+
+
+
+.btn--outline {
+  background: transparent;
+  color: var(--clr-brand);
+  border-color: var(--clr-brand);
+}
+
+.btn--outline:hover {
+  background: var(--clr-brand-light);
+  text-decoration: none;
+  color: var(--clr-brand);
+}
+
+
+
+.btn--ghost {
+  background: transparent;
+  color: var(--clr-text-secondary);
+  border-color: transparent;
+}
+
+.btn--ghost:hover {
+  background: var(--clr-surface-2);
+  color: var(--clr-text);
+  text-decoration: none;
+}
+
+
+
+.btn--danger {
+  background: var(--clr-danger);
+  color: var(--clr-text-inverse);
+  border-color: var(--clr-danger);
+}
+
+.btn--danger:hover {
+  background: var(--clr-red-700);
+  border-color: var(--clr-red-700);
+  text-decoration: none;
+  color: var(--clr-text-inverse);
+}
+
+
+
+.btn--icon {
+  padding: var(--sp-2);
+  border-radius: var(--radius-base);
+  width: 40px;
+  height: 40px;
+}
+
+.btn--icon.btn--lg {
+  width: 48px;
+  height: 48px;
+  padding: var(--sp-3);
+}
+
+
+.btn--icon-round {
+  padding: var(--sp-2);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+}
+
+
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+}
+
+
+
+.btn--loading {
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.btn--loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+}
+
+
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-8);
+  background: var(--clr-brand);
+  color: var(--clr-text-inverse);
+  font-size: var(--text-base);
+  font-weight: var(--fw-bold);
+  font-family: var(--font-body);
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: var(--shadow-brand), 0 1px 0 rgba(255,255,255,0.15) inset;
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--duration-fast) var(--ease-spring);
+}
+
+.btn-cta:hover {
+  background: var(--clr-brand-hover);
+  box-shadow: var(--shadow-brand-lg);
+  text-decoration: none;
+  color: var(--clr-text-inverse);
+  transform: translateY(-1px);
+}
+
+.btn-cta:active {
+  transform: scale(0.97);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-cta .material-icons,
+.btn-cta svg {
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}

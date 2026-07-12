@@ -1,0 +1,81 @@
+/* pwa-nav.css - Bottom PWA navigation bar and mobile app-like nav behavior. */
+/* Sections: Bottom nav shell, item layout, active-state styling, and safe-area spacing. */
+
+/* Core PWA bottom-nav styles */
+
+/* Primary style rules */
+
+.pwa-bottom-nav {
+  display: none;
+}
+
+/* Responsive overrides */
+
+@media (display-mode: standalone) {
+  .pwa-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--clr-surface);
+    border-top: 1px solid var(--clr-border);
+    z-index: var(--z-header);
+    align-items: stretch;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .pwa-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-decoration: none;
+    color: var(--clr-text-muted);
+    font-size: 10px;
+    font-weight: var(--fw-medium);
+    transition: color var(--transition-fast), background var(--transition-fast);
+    -webkit-tap-highlight-color: transparent;
+    padding-block: var(--sp-1);
+  }
+
+/* Interaction and state styles */
+
+  .pwa-nav-item:hover,
+  .pwa-nav-item:active {
+    color: var(--clr-brand);
+    text-decoration: none;
+    background: var(--clr-brand-light);
+  }
+
+  .pwa-nav-item.is-active {
+    color: var(--clr-brand);
+    background: var(--clr-brand-light);
+    font-weight: var(--fw-semibold);
+  }
+
+  .pwa-nav-item .material-icons {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .pwa-nav-label {
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  
+  .main-content {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  
+  .footer-slim,
+  .site-footer {
+    display: none !important;
+  }
+}

@@ -1,0 +1,160 @@
+/* scan.css - Scan page camera/upload flow layout and interaction styling. */
+/* Sections: Scan entry options, preview overlay, action controls, and scan-page responsiveness. */
+
+/* Core scan-page styles */
+
+/* Primary style rules */
+
+.scan-page-header {
+  padding-top: var(--sp-4);
+  padding-bottom: var(--sp-6);
+  text-align: center;
+}
+
+.scan-page-title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  font-weight: var(--fw-extrabold);
+  color: var(--clr-text);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--sp-3);
+}
+
+.scan-page-subtitle {
+  font-size: var(--text-base);
+  color: var(--clr-text-secondary);
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+
+
+.scan-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+  max-width: 520px;
+  margin: 0 auto var(--sp-12);
+}
+
+/* Responsive overrides */
+
+@media (min-width: 480px) {
+  .scan-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.scan-option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  padding: var(--sp-8) var(--sp-6);
+  background: var(--clr-surface);
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-2xl);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-normal),
+    box-shadow var(--transition-normal),
+    transform var(--duration-normal) var(--ease-spring);
+  text-align: center;
+}
+
+/* Interaction and state styles */
+
+.scan-option-card:hover {
+  border-color: var(--clr-brand);
+  box-shadow: var(--shadow-brand);
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+.scan-option-card:active {
+  transform: scale(0.97);
+}
+
+.scan-option-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-xl);
+  background: var(--clr-brand-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-brand);
+  transition: background var(--transition-fast), transform var(--duration-fast) var(--ease-spring);
+}
+
+.scan-option-card:hover .scan-option-icon {
+  background: var(--clr-brand);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.scan-option-icon .material-icons {
+  font-size: 32px;
+}
+
+.scan-option-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-bold);
+  color: var(--clr-text);
+}
+
+.scan-option-desc {
+  font-size: var(--text-sm);
+  color: var(--clr-text-muted);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+}
+
+
+
+.scan-tips {
+  background: var(--clr-amber-50);
+  border: 1px solid var(--clr-amber-200);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-5);
+  max-width: 520px;
+  margin: 0 auto var(--sp-10);
+}
+
+.scan-tips-title {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-amber-700);
+  margin-bottom: var(--sp-3);
+}
+
+.scan-tips-title .material-icons { font-size: 18px; }
+
+.scan-tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.scan-tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: var(--text-sm);
+  color: var(--clr-amber-700);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+}
+
+.scan-tip-item .material-icons {
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--clr-amber-500);
+}

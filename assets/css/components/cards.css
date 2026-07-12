@@ -1,0 +1,82 @@
+/* cards.css - Reusable card components and card layout variants. */
+/* Sections: Card shell, content spacing, icon/media regions, and card variant styles. */
+
+/* Core card styles */
+
+/* Primary style rules */
+
+.card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-6);
+  transition:
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--duration-normal) var(--ease-out);
+}
+
+/* Interaction and state styles */
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--clr-border-strong);
+}
+
+.card--interactive {
+  cursor: pointer;
+}
+
+.card--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+
+.card--feature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-6) var(--sp-5);
+}
+
+.card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--clr-brand-light);
+  color: var(--clr-brand);
+  flex-shrink: 0;
+}
+
+.card-icon-wrap .material-icons {
+  font-size: 24px;
+}
+
+.card-icon-wrap--amber {
+  background: var(--clr-amber-50);
+  color: var(--clr-amber-600);
+}
+
+.card-icon-wrap--red {
+  background: var(--clr-red-50);
+  color: var(--clr-red-600);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-text);
+  line-height: var(--lh-snug);
+}
+
+.card-body {
+  font-size: var(--text-sm);
+  color: var(--clr-text-secondary);
+  line-height: var(--lh-relaxed);
+  max-width: none;
+}

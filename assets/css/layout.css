@@ -1,0 +1,248 @@
+/* layout.css - Shared layout containers, spacing flow, and responsive structure rules. */
+/* Sections: App containers, grid/flex primitives, spacing utilities, and responsive breakpoints. */
+
+/* Core layout primitives */
+
+/* Primary style rules */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+
+.container--narrow {
+  max-width: 720px;
+}
+
+
+.container--wide {
+  max-width: 1400px;
+}
+
+
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: var(--header-height);
+}
+
+
+/* Responsive overrides */
+
+@media (min-width: 1024px) {
+  .desktop-page-spacing,
+  .page-content {
+    margin-top: clamp(24px, 4vw, 48px);
+  }
+}
+
+
+
+.section {
+  padding-block: var(--sp-16);
+}
+
+.section--sm {
+  padding-block: var(--sp-10);
+}
+
+.section--lg {
+  padding-block: var(--sp-24);
+}
+
+
+
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--sp-6);
+}
+
+.grid-auto--sm {
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: var(--sp-4);
+}
+
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-8);
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+.grid-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .grid-hero {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-6);
+}
+
+@media (min-width: 600px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+}
+
+@media (min-width: 900px) {
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+
+.flex         { display: flex; }
+.flex-col     { flex-direction: column; }
+.flex-wrap    { flex-wrap: wrap; }
+.flex-center  { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-start   { display: flex; align-items: center; justify-content: flex-start; }
+.gap-2  { gap: var(--sp-2); }
+.gap-3  { gap: var(--sp-3); }
+.gap-4  { gap: var(--sp-4); }
+.gap-6  { gap: var(--sp-6); }
+.gap-8  { gap: var(--sp-8); }
+
+
+
+.mt-auto { margin-top: auto; }
+.mx-auto { margin-inline: auto; }
+
+
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+
+
+.hidden        { display: none; }
+.block         { display: block; }
+.inline-block  { display: inline-block; }
+.full-width    { width: 100%; }
+
+
+@media (max-width: 767px) {
+  .hide-mobile  { display: none !important; }
+}
+
+@media (min-width: 768px) {
+  .hide-desktop { display: none !important; }
+}
+
+
+
+.divider {
+  height: 1px;
+  background: var(--clr-border);
+  margin-block: var(--sp-6);
+}
+
+
+
+.page-back-btn {
+  display: none;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-brand);
+  text-decoration: none;
+  margin-top: var(--sp-2);
+  margin-bottom: var(--sp-3);
+  width: fit-content;
+  padding: var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-2);
+  border-radius: var(--radius-base);
+  border: 1.5px solid var(--clr-primary-200);
+  background: var(--clr-brand-light);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  line-height: 1;
+}
+
+.page-back-btn .material-icons {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Interaction and state styles */
+
+.page-back-btn:hover {
+  background: var(--clr-primary-100);
+  border-color: var(--clr-brand);
+  text-decoration: none;
+}
+
+.page-back-btn:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 899px) {
+  .page-back-btn {
+    display: inline-flex;
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 2rem;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .section     { padding-block: var(--sp-10); }
+  .section--sm { padding-block: var(--sp-8);  }
+  .section--lg { padding-block: var(--sp-16); }
+}

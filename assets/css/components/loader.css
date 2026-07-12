@@ -1,0 +1,125 @@
+/* loader.css - Loading indicators, progress visuals, and skeleton placeholders. */
+/* Sections: Full-screen loaders, inline indicators, animation states, and progress visuals. */
+
+/* Core loading indicator styles */
+
+/* Primary style rules */
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--clr-border);
+  border-top-color: var(--clr-brand);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+.spinner--sm { width: 20px; height: 20px; border-width: 2px; }
+.spinner--lg { width: 56px; height: 56px; border-width: 4px; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--clr-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--sp-4);
+  z-index: var(--z-toast);
+}
+
+.page-loader-text {
+  font-size: var(--text-sm);
+  color: var(--clr-text-muted);
+}
+
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--clr-stone-200) 25%,
+    var(--clr-stone-100) 50%,
+    var(--clr-stone-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-base);
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+.ai-processing-overlay {
+  position: fixed;
+  inset: 0;
+  background: #1c1917;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-5);
+  z-index: var(--z-modal);
+  color: #fff;
+}
+
+/* Interaction and state styles */
+
+.ai-processing-overlay.is-visible {
+  display: flex;
+}
+
+.ai-processing-overlay.is-hiding {
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.ai-processing-ring {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.ai-processing-ring svg {
+  width: 80px;
+  height: 80px;
+  animation: spin 1.2s linear infinite;
+}
+
+.ai-processing-ring svg circle {
+  fill: none;
+  stroke: var(--clr-primary-400);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 188;
+  stroke-dashoffset: 60;
+}
+
+.ai-processing-label {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  letter-spacing: var(--ls-tight);
+}
+
+.ai-processing-sublabel {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.6);
+  max-width: none;
+}
+
+
+body.page-loading .ai-processing-overlay {
+  display: flex;
+}
