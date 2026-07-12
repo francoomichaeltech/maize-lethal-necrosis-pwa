@@ -1,0 +1,805 @@
+<!doctype html>
+<!-- legal/terms.html - Terms of use and legal conditions for app usage. -->
+<html lang="sw" dir="ltr" style="background: #fafaf9">
+  <head>
+    <!-- Head: Metadata, icons, preload hints, and stylesheet resources. -->
+    <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href="/assets/fonts/material-icons.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/assets/css/tokens.css" as="style" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#16A34A" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/assets/images/icons/android/icon-192x192.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/icons/pwa/apple-touch-180x180.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/fonts/material-icons.css" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components/header.css" />
+    <link rel="stylesheet" href="/assets/css/components/nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/footer.css" />
+    <link rel="stylesheet" href="/assets/css/components/pwa-nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/buttons.css" />
+    <link rel="stylesheet" href="/assets/css/pages/history.css" />
+    <title>Masharti ya Matumizi &middot; M-Skana</title>
+    <style>
+      /* Critical inline styles to prevent FOUC before CSS loads. */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        background: #fafaf9;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: #fafaf9;
+        color: #1c1917;
+      }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #fff;
+        border-bottom: 1px solid #e7e5e4;
+        z-index: 200;
+      }
+      .main-content {
+        padding-top: 64px;
+      }
+      .page-back-btn {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #16a34a;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        margin-bottom: 0.75rem;
+        width: fit-content;
+        padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+        border-radius: 0.375rem;
+        border: 1.5px solid #bbf7d0;
+        background: #f0fdf4;
+      }
+      @media (max-width: 899px) {
+        .page-back-btn {
+          display: inline-flex;
+        }
+      }
+    </style>
+    <noscript
+      ><style>
+        body {
+          visibility: visible !important;
+        }
+      </style></noscript
+    >
+  </head>
+  <body class="page-wrapper">
+    <!-- Body: Page structure, UI sections, and user-facing content. -->
+    <a href="#main-content" class="skip-link">Ruka kwenda maudhui makuu</a>
+
+    <!-- Top site header and desktop navigation. -->
+    <header class="site-header" role="banner" id="site-header">
+      <div class="container header-container">
+        <div class="header-brand">
+          <a
+            href="/index.html"
+            class="logo-link"
+            aria-label="M-Skana &middot; Nyumbani"
+          >
+            <img
+              src="/assets/images/icons/android/icon-96x96.png"
+              alt="M-Skana Logo"
+              class="brand-logo"
+              width="32"
+              height="32"
+            />
+            <span class="brand-name">M-Skana</span>
+          </a>
+        </div>
+
+        <nav
+          class="main-nav main-nav--desktop"
+          role="navigation"
+          aria-label="Menyu kuu"
+        >
+          <ul class="nav-list" role="list">
+            <li>
+              <a href="index.html" class="nav-link"
+                ><span data-sw="Nyumbani" data-en="Home">Nyumbani</span></a
+              >
+            </li>
+            <li>
+              <a href="scan.html" class="nav-link"
+                ><span data-sw="Piga Picha" data-en="Scan">Piga Picha</span></a
+              >
+            </li>
+            <li>
+              <a href="history.html" class="nav-link"
+                ><span data-sw="Historia" data-en="History">Historia</span></a
+              >
+            </li>
+            <li>
+              <a href="guide.html" class="nav-link"
+                ><span data-sw="Mwongozo" data-en="Guide">Mwongozo</span></a
+              >
+            </li>
+            <li>
+              <a href="about.html" class="nav-link"
+                ><span data-sw="Kuhusu" data-en="About">Kuhusu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-selector" id="lang-selector">
+            <button
+              class="lang-selector-btn"
+              id="lang-selector-btn"
+              aria-label="Chagua lugha"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              type="button"
+            >
+              <span class="material-icons" aria-hidden="true">language</span>
+              <span class="current-language" id="current-lang-label">SW</span>
+              <span class="material-icons chevron-icon" aria-hidden="true"
+                >expand_more</span
+              >
+            </button>
+
+            <div
+              class="lang-dropdown"
+              id="lang-dropdown"
+              hidden
+              role="listbox"
+              aria-label="Chagua lugha"
+            >
+              <button
+                class="lang-option lang-option--active"
+                data-lang="sw"
+                type="button"
+                role="option"
+                aria-selected="true"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect width="300" height="200" fill="#1EB53A" />
+                  <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+                  <path
+                    d="M 0,200 L 300,0"
+                    stroke="#FCD116"
+                    stroke-width="84"
+                  />
+                  <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+                </svg>
+                <span class="lang-name">Kiswahili</span>
+                <span class="material-icons check-icon" aria-hidden="true"
+                  >check</span
+                >
+              </button>
+
+              <button
+                class="lang-option"
+                data-lang="en"
+                type="button"
+                role="option"
+                aria-selected="false"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <clipPath id="flag-clip-desktop">
+                    <path
+                      d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                    />
+                  </clipPath>
+                  <rect width="300" height="200" fill="#012169" />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    stroke="#fff"
+                    stroke-width="40"
+                  />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    clip-path="url(#flag-clip-desktop)"
+                    stroke="#C8102E"
+                    stroke-width="26"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#fff"
+                    stroke-width="66"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#C8102E"
+                    stroke-width="40"
+                  />
+                </svg>
+                <span class="lang-name">English</span>
+                <span
+                  class="material-icons check-icon check-icon--hidden"
+                  aria-hidden="true"
+                  >check</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="mobile-menu-btn"
+            id="mobile-menu-btn"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Fungua menyu"
+            type="button"
+          >
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Mobile navigation drawer and backdrop. -->
+    <div
+      class="mobile-nav-backdrop"
+      id="mobile-nav-backdrop"
+      aria-hidden="true"
+    ></div>
+
+    <nav
+      class="mobile-nav"
+      id="mobile-nav"
+      role="navigation"
+      aria-label="Menyu ya simu"
+      aria-hidden="true"
+      inert
+    >
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img
+            src="/assets/images/icons/android/icon-72x72.png"
+            alt="M-Skana Logo"
+            class="mobile-nav-logo"
+            width="28"
+            height="28"
+          />
+          <span class="mobile-nav-brand-name">M-Skana</span>
+        </div>
+        <button
+          class="mobile-nav-close"
+          id="mobile-nav-close"
+          aria-label="Funga menyu"
+          type="button"
+        >
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+      </div>
+
+      <ul class="mobile-nav-list" role="list">
+        <li>
+          <a href="index.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >home</span
+            >
+            <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+          </a>
+        </li>
+        <li>
+          <a href="scan.html" class="mobile-nav-link mobile-nav-link--cta">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >camera_alt</span
+            >
+            <span data-sw="Piga Picha" data-en="Scan">Piga Picha</span>
+          </a>
+        </li>
+        <li>
+          <a href="history.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >history</span
+            >
+            <span data-sw="Historia" data-en="History">Historia</span>
+          </a>
+        </li>
+        <li>
+          <a href="guide.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >menu_book</span
+            >
+            <span data-sw="Mwongozo" data-en="Guide">Mwongozo</span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >info</span
+            >
+            <span data-sw="Kuhusu" data-en="About">Kuhusu</span>
+          </a>
+        </li>
+        <li>
+          <a href="feedback.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >chat_bubble</span
+            >
+            <span data-sw="Toa Maoni" data-en="Feedback">Toa Maoni</span>
+          </a>
+        </li>
+        <li>
+          <a href="support.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >support_agent</span
+            >
+            <span data-sw="Msaada" data-en="Support">Msaada</span>
+          </a>
+        </li>
+        <li>
+          <a href="legal/terms.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >description</span
+            >
+            <span data-sw="Masharti ya Matumizi" data-en="Terms of Use"
+              >Masharti ya Matumizi</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="legal/privacy.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >shield</span
+            >
+            <span data-sw="Sera ya Faragha" data-en="Privacy Policy"
+              >Sera ya Faragha</span
+            >
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-nav-footer">
+        <p
+          class="mobile-nav-footer-label"
+          data-sw="Chagua Lugha"
+          data-en="Select Language"
+        >
+          Chagua Lugha
+        </p>
+        <div class="mobile-nav-language">
+          <button
+            class="mobile-lang-option mobile-lang-option--active"
+            data-lang="sw"
+            type="button"
+          >
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect width="300" height="200" fill="#1EB53A" />
+              <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+              <path d="M 0,200 L 300,0" stroke="#FCD116" stroke-width="84" />
+              <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+            </svg>
+            <span class="mobile-lang-name">Kiswahili</span>
+          </button>
+          <button class="mobile-lang-option" data-lang="en" type="button">
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <clipPath id="flag-clip-mobile">
+                <path
+                  d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                />
+              </clipPath>
+              <rect width="300" height="200" fill="#012169" />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                stroke="#fff"
+                stroke-width="40"
+              />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                clip-path="url(#flag-clip-mobile)"
+                stroke="#C8102E"
+                stroke-width="26"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#fff"
+                stroke-width="66"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#C8102E"
+                stroke-width="40"
+              />
+            </svg>
+            <span class="mobile-lang-name">English</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main legal content area. -->
+    <main
+      id="main-content"
+      class="main-content legal-page desktop-page-spacing"
+      role="main"
+    >
+      <div
+        class="container container--narrow"
+        style="padding-bottom: var(--sp-16); max-width: 680px"
+      >
+        <!-- Mobile back button to home. -->
+        <a
+          href="/index.html"
+          class="page-back-btn"
+          data-back-btn
+          data-back-fallback="/index.html"
+          aria-label="Home"
+        >
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+          <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+        </a>
+        <!-- Terms document body. -->
+        <div class="legal-content">
+          <h1
+            style="
+              font-family: var(--font-display);
+              font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+              font-weight: var(--fw-extrabold);
+              color: var(--clr-text);
+              letter-spacing: var(--ls-tight);
+              margin-bottom: var(--sp-2);
+            "
+            data-sw="Masharti ya Matumizi"
+            data-en="Terms of Use"
+          >
+            Masharti ya Matumizi
+          </h1>
+          <p
+            style="
+              color: var(--clr-text-muted);
+              margin-bottom: var(--sp-8);
+              font-size: var(--text-sm);
+            "
+            data-sw="Ilisasishwa mara ya mwisho: Machi 2026"
+            data-en="Last updated: March 2026"
+          >
+            Ilisasishwa mara ya mwisho: Machi 2026
+          </p>
+
+          <div
+            style="
+              background: var(--clr-amber-50);
+              border: 1.5px solid var(--clr-amber-200);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-4);
+              margin-bottom: var(--sp-8);
+              display: flex;
+              gap: var(--sp-3);
+            "
+          >
+            <span
+              class="material-icons"
+              style="color: var(--clr-amber-600); flex-shrink: 0"
+              >info</span
+            >
+            <p
+              style="font-size: var(--text-sm); color: var(--clr-amber-700)"
+              data-sw="M-Skana ni chombo cha msaada wa awali kwa utambuzi wa dalili za magonjwa ya mahindi. Matokeo yake hayabadilishi ushauri wa mtaalamu wa kilimo, hivyo kwa maamuzi ya mwisho unapaswa kushauriana na Ofisi ya Kilimo ya wilaya yako au mtaalamu husika."
+              data-en="M-Skana is an early-support tool for identifying maize disease symptoms. Its results do not replace professional agricultural advice, so for final decisions you should consult your district agricultural office or a qualified expert."
+            >
+              M-Skana ni chombo cha msaada wa awali kwa utambuzi wa dalili za
+              magonjwa ya mahindi. Matokeo yake hayabadilishi ushauri wa
+              mtaalamu wa kilimo, hivyo kwa maamuzi ya mwisho unapaswa
+              kushauriana na Ofisi ya Kilimo ya wilaya yako au mtaalamu husika.
+            </p>
+          </div>
+
+          <h2 data-sw="1. Kukubali Masharti" data-en="1. Acceptance of Terms">
+            1. Kukubali Masharti
+          </h2>
+          <p
+            data-sw="Kwa kupakua, kusakinisha, au kutumia M-Skana, unakubali kufuata masharti haya."
+            data-en="By downloading, installing, or using M-Skana, you agree to follow these terms."
+          >
+            Kwa kupakua, kusakinisha, au kutumia M-Skana, unakubali kufuata
+            masharti haya.
+          </p>
+          <p
+            data-sw="Iwapo hukubaliani na masharti haya, usitumie programu hii."
+            data-en="If you do not agree with these terms, do not use this app."
+          >
+            Iwapo hukubaliani na masharti haya, usitumie programu hii.
+          </p>
+          <p
+            data-sw="Tunaweza kubadilisha masharti haya wakati wowote, na toleo jipya litawekwa kwenye ukurasa huu."
+            data-en="We may change these terms at any time, and a new version will be posted on this page."
+          >
+            Tunaweza kubadilisha masharti haya wakati wowote, na toleo jipya
+            litawekwa kwenye ukurasa huu.
+          </p>
+
+          <h2
+            data-sw="2. Madhumuni ya Programu"
+            data-en="2. Purpose of the App"
+          >
+            2. Madhumuni ya Programu
+          </h2>
+          <p
+            data-sw="M-Skana imeundwa kusaidia wakulima wa Tanzania na Afrika Mashariki kutambua dalili za MLN na magonjwa mengine ya mahindi kwa kutumia akili bandia. Programu hii inatoa taarifa za awali tu na haichukui nafasi ya uchunguzi au ushauri wa kitaalamu wa kilimo."
+            data-en="M-Skana is designed to help farmers in Tanzania and East Africa identify MLN symptoms and other maize diseases using artificial intelligence. The app provides preliminary information only and does not replace professional agricultural diagnosis or advice."
+          >
+            M-Skana imeundwa kusaidia wakulima wa Tanzania na Afrika Mashariki
+            kutambua dalili za MLN na magonjwa mengine ya mahindi kwa kutumia
+            akili bandia.
+          </p>
+
+          <h2 data-sw="3. Mipaka ya Dhima" data-en="3. Limitation of Liability">
+            3. Mipaka ya Dhima
+          </h2>
+          <p
+            data-sw="Tunajitahidi kuhakikisha programu inafanya kazi vizuri, lakini hatuhakikishi kwamba matokeo yatakuwa sahihi kwa kila hali."
+            data-en="We work to keep the app functioning well, but we do not guarantee results will be accurate in every case."
+          >
+            Tunajitahidi kuhakikisha programu inafanya kazi vizuri, lakini
+            hatuhakikishi kwamba matokeo yatakuwa sahihi kwa kila hali.
+          </p>
+          <p
+            data-sw="Timu ya M-Skana na Mbeya University of Science and Technology hawatawajibika kwa:"
+            data-en="The M-Skana team and Mbeya University of Science and Technology are not liable for:"
+          >
+            Timu ya M-Skana na Mbeya University of Science and Technology
+            hawatawajibika kwa:
+          </p>
+          <ul>
+            <li
+              data-sw="Hasara ya mazao au maamuzi yaliyofanywa kwa kutegemea matokeo ya programu pekee bila ushauri wa mtaalamu"
+              data-en="Crop loss or decisions made by relying only on app results without expert advice"
+            >
+              Hasara ya mazao au maamuzi yaliyofanywa kwa kutegemea matokeo ya
+              programu pekee bila ushauri wa mtaalamu
+            </li>
+            <li
+              data-sw="Matokeo yasiyo sahihi yanayosababishwa na picha zisizo wazi, mwanga usiofaa, au hali nyingine zisizo za kawaida"
+              data-en="Inaccurate results caused by unclear images, poor lighting, or other unusual conditions"
+            >
+              Matokeo yasiyo sahihi yanayosababishwa na picha zisizo wazi,
+              mwanga usiofaa, au hali nyingine zisizo za kawaida
+            </li>
+            <li
+              data-sw="Kupotea kwa data au matatizo ya kifaa yanayoweza kutokea wakati wa matumizi ya programu, isipokuwa pale sheria inayotumika inaposema vinginevyo"
+              data-en="Data loss or device issues that may occur while using the app, unless applicable law states otherwise"
+            >
+              Kupotea kwa data au matatizo ya kifaa yanayoweza kutokea wakati wa
+              matumizi ya programu, isipokuwa pale sheria inayotumika inaposema
+              vinginevyo
+            </li>
+          </ul>
+
+          <h2 data-sw="4. Matumizi Yanayoruhusiwa" data-en="4. Permitted Use">
+            4. Matumizi Yanayoruhusiwa
+          </h2>
+          <p
+            data-sw="Unaweza kutumia M-Skana bila malipo kwa matumizi binafsi ya kilimo na kwa kusaidia kutambua dalili za magonjwa ya mahindi."
+            data-en="You may use M-Skana free of charge for personal agricultural use and to help identify maize disease symptoms."
+          >
+            Unaweza kutumia M-Skana bila malipo kwa matumizi binafsi ya kilimo
+            na kwa kusaidia kutambua dalili za magonjwa ya mahindi.
+          </p>
+          <p
+            data-sw="Unaweza pia kushiriki matokeo yako na familia, jirani, au maofisa wa kilimo kwa madhumuni ya kupata msaada au ushauri."
+            data-en="You may also share your results with family, neighbors, or agriculture officers to seek help or advice."
+          >
+            Unaweza pia kushiriki matokeo yako na familia, jirani, au maofisa wa
+            kilimo kwa madhumuni ya kupata msaada au ushauri.
+          </p>
+
+          <h2 data-sw="5. Matumizi Yasiyoruhusiwa" data-en="5. Prohibited Use">
+            5. Matumizi Yasiyoruhusiwa
+          </h2>
+          <p
+            data-sw="Hauruhusiwi kufanya yafuatayo wakati wa kutumia programu:"
+            data-en="You are not allowed to do the following while using the app:"
+          >
+            Hauruhusiwi kufanya yafuatayo wakati wa kutumia programu:
+          </p>
+          <ul>
+            <li
+              data-sw="Kutumia programu kwa madhumuni ya kibiashara bila idhini ya maandishi kutoka timu ya M-Skana"
+              data-en="Using the app for commercial purposes without written permission from the M-Skana team"
+            >
+              Kutumia programu kwa madhumuni ya kibiashara bila idhini ya
+              maandishi kutoka timu ya M-Skana
+            </li>
+            <li
+              data-sw="Kujaribu kubadilisha, kuharibu, au kuingilia mfumo wa programu au wa AI"
+              data-en="Trying to modify, damage, or interfere with the app or AI system"
+            >
+              Kujaribu kubadilisha, kuharibu, au kuingilia mfumo wa programu au
+              wa AI
+            </li>
+            <li
+              data-sw="Kutumia programu kwa njia isiyo halali, ya kupotosha, au ya udanganyifu"
+              data-en="Using the app in an illegal, misleading, or fraudulent way"
+            >
+              Kutumia programu kwa njia isiyo halali, ya kupotosha, au ya
+              udanganyifu
+            </li>
+            <li
+              data-sw="Kusambaza taarifa za uongo au zinazoweza kuwaleta madhara wengine kwa kutegemea matokeo ya programu pekee"
+              data-en="Sharing false information or content that may harm others by relying only on app results"
+            >
+              Kusambaza taarifa za uongo au zinazoweza kuwaletea madhara wengine
+              kwa kutegemea matokeo ya programu pekee
+            </li>
+          </ul>
+
+          <h2 data-sw="6. Haki Miliki" data-en="6. Intellectual Property">
+            6. Haki Miliki
+          </h2>
+          <p
+            data-sw="Haki zote za M-Skana, ikiwemo jina, muundo wa programu, maudhui, na teknolojia inayotumika, zinamilikiwa na timu ya mradi isipokuwa pale ilipoelezwa vinginevyo."
+            data-en="All rights to M-Skana, including the name, app design, content, and technology used, are owned by the project team unless stated otherwise."
+          >
+            Haki zote za M-Skana, ikiwemo jina, muundo wa programu, maudhui, na
+            teknolojia inayotumika, zinamilikiwa na timu ya mradi isipokuwa pale
+            ilipoelezwa vinginevyo.
+          </p>
+          <p
+            data-sw="Iwapo kuna sehemu ya msimbo au vipengele vinavyosimamiwa na leseni ya wazi, matumizi yake yatafuata masharti ya leseni husika kama yalivyoainishwa kwenye hazina ya GitHub."
+            data-en="If any code or components are governed by open licenses, their use follows the respective license terms as stated in the GitHub repository."
+          >
+            Iwapo kuna sehemu ya msimbo au vipengele vinavyosimamiwa na leseni
+            ya wazi, matumizi yake yatafuata masharti ya leseni husika kama
+            yalivyoainishwa kwenye hazina ya GitHub.
+          </p>
+
+          <h2 data-sw="7. Mabadiliko ya Masharti" data-en="7. Changes to Terms">
+            7. Mabadiliko ya Masharti
+          </h2>
+          <p
+            data-sw="Tunaweza kusasisha masharti haya mara kwa mara ili yaendane na maboresho ya programu, mabadiliko ya huduma, au mahitaji mengine ya kisheria."
+            data-en="We may update these terms from time to time to reflect app improvements, service changes, or legal requirements."
+          >
+            Tunaweza kusasisha masharti haya mara kwa mara ili yaendane na
+            maboresho ya programu, mabadiliko ya huduma, au mahitaji mengine ya
+            kisheria.
+          </p>
+          <p
+            data-sw="Ukiendelea kutumia programu baada ya mabadiliko kuchapishwa, tutachukulia kuwa umekubali masharti mapya."
+            data-en="If you continue using the app after changes are published, we will treat that as acceptance of the updated terms."
+          >
+            Ukiendelea kutumia programu baada ya mabadiliko kuchapishwa,
+            tutachukulia kuwa umekubali masharti mapya.
+          </p>
+
+          <h2 data-sw="8. Mawasiliano" data-en="8. Contact">8. Mawasiliano</h2>
+          <p
+            data-sw="Kwa maswali kuhusu masharti haya au matumizi ya programu, wasiliana nasi kupitia:"
+            data-en="For questions about these terms or app usage, contact us through:"
+          >
+            Kwa maswali kuhusu masharti haya au matumizi ya programu, wasiliana
+            nasi kupitia:
+          </p>
+          <span class="material-icons footer-contact-icon" aria-hidden="true"
+            >support_agent</span
+          >
+          <span
+            data-sw="Msaada:"
+            data-en="Support:"
+            style="font-weight: var(--fw-semibold)"
+          >
+            Msaada:
+          </span>
+
+          <a
+            href="/support.html"
+            style="
+              color: var(--clr-brand);
+              display: inline-flex;
+              align-items: center;
+              gap: 4px;
+            "
+            data-sw="Wasiliana Nasi"
+            data-en="Contact Us"
+          >
+            Wasiliana Nasi
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Compact footer links. -->
+    <footer class="footer-slim" role="contentinfo">
+      <div class="container footer-slim-inner">
+        <span class="footer-slim-copy"
+          >© 2026 M-Skana. All rights reserved.</span
+        >
+        <div class="footer-slim-links">
+          <a href="/legal/privacy.html" class="footer-slim-link">Privacy</a>
+          <a href="/legal/terms.html" class="footer-slim-link">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: page-specific and shared runtime modules. -->
+    <script src="/assets/js/core/storage.js"></script>
+    <script src="/assets/js/core/events.js"></script>
+    <script src="/assets/js/modules/language.js"></script>
+    <script src="/assets/js/modules/nav.js"></script>
+    <script src="/assets/js/modules/pwa.js"></script>
+    <script src="/assets/js/core/app.js"></script>
+
+    <!-- Mobile bottom navigation. -->
+    <nav class="pwa-bottom-nav" id="pwa-bottom-nav" aria-label="Menyu ya chini">
+      <a href="/index.html" class="pwa-nav-item" data-page="index">
+        <span class="material-icons" aria-hidden="true">home</span>
+        <span class="pwa-nav-label" data-sw="Nyumbani" data-en="Home"
+          >Nyumbani</span
+        >
+      </a>
+      <a href="/scan.html" class="pwa-nav-item" data-page="scan">
+        <span class="material-icons" aria-hidden="true">camera_alt</span>
+        <span class="pwa-nav-label" data-sw="Piga Picha" data-en="Scan"
+          >Piga Picha</span
+        >
+      </a>
+      <a href="/guide.html" class="pwa-nav-item" data-page="guide">
+        <span class="material-icons" aria-hidden="true">menu_book</span>
+        <span class="pwa-nav-label" data-sw="Mwongozo" data-en="Guide"
+          >Mwongozo</span
+        >
+      </a>
+      <a href="/about.html" class="pwa-nav-item" data-page="about">
+        <span class="material-icons" aria-hidden="true">info</span>
+        <span class="pwa-nav-label" data-sw="Kuhusu" data-en="About"
+          >Kuhusu</span
+        >
+      </a>
+    </nav>
+  </body>
+</html>

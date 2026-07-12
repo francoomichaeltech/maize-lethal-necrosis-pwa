@@ -1,0 +1,375 @@
+﻿<!doctype html>
+<!-- Page purpose: full-screen camera capture flow with preview, retake, and confirm actions. -->
+<html lang="sw" dir="ltr" style="background:#000;">
+<head>
+  <!-- Head section: metadata, preload hints, and styles for the camera experience. -->
+  <meta charset="UTF-8" />
+  <link rel="preload" href="/assets/fonts/material-icons.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/css/tokens.css" as="style" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="M-Skana" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/pwa/apple-touch-180x180.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>Skana Jani &middot; M-Skana</title>
+  <link rel="stylesheet" href="/assets/fonts/material-icons.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #16a34a; --red: #ef4444; --white: #ffffff; --black: #000000;
+      --glass: rgba(0,0,0,0.55); --blur: blur(14px) saturate(1.3);
+      --spring: cubic-bezier(0.34,1.56,0.64,1);
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --safe-t: env(safe-area-inset-top, 0px);
+    }
+    html, body { width:100%; height:100dvh; overflow:hidden; background:var(--black); color:var(--white); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; -webkit-font-smoothing:antialiased; position:fixed; }
+    .cam-root { position:relative; width:100%; height:100dvh; overflow:hidden; background:var(--black); }
+    #cam-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    #cam-video.mirrored { transform:scaleX(-1); }
+    .flash { position:absolute; inset:0; background:var(--white); opacity:0; pointer-events:none; z-index:40; }
+    .flash.go { animation:do-flash .3s ease-out forwards; }
+    @keyframes do-flash { 0%{opacity:.9} 100%{opacity:0} }
+    .top-bar { position:absolute; top:0; left:0; right:0; z-index:20; height:calc(56px + var(--safe-t)); padding-top:var(--safe-t); padding-inline:12px; display:flex; align-items:center; justify-content:space-between; background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,transparent 100%); transition:opacity .25s; }
+    .top-btn { width:40px; height:40px; border-radius:50%; background:var(--glass); backdrop-filter:var(--blur); -webkit-backdrop-filter:var(--blur); border:1px solid rgba(255,255,255,.2); color:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .15s var(--spring); flex-shrink:0; }
+    .top-btn:active { transform:scale(.92); }
+    .top-btn .material-icons { font-size:22px; }
+    .top-title { font-size:14px; font-weight:700; letter-spacing:.2px; text-shadow:0 1px 6px rgba(0,0,0,.8); text-align:right; flex:1; padding-inline:8px; padding-right:4px; }
+    .viewfinder { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; z-index:10; padding-bottom:calc(160px + var(--safe-b)); padding-top:calc(72px + var(--safe-t)); }
+    .frame-wrap { position:relative; width:min(88vw,340px); aspect-ratio:1; }
+    .dim { position:fixed; inset:0; background:rgba(0,0,0,.38); pointer-events:none; z-index:1; }
+    .frame-wrap { z-index:2; }
+    .corner { position:absolute; width:28px; height:28px; border-color:rgba(255,255,255,.92); border-style:solid; z-index:3; }
+    .corner.tl{top:-1px;left:-1px;border-width:3px 0 0 3px;border-radius:10px 0 0 0}
+    .corner.tr{top:-1px;right:-1px;border-width:3px 3px 0 0;border-radius:0 10px 0 0}
+    .corner.bl{bottom:-1px;left:-1px;border-width:0 0 3px 3px;border-radius:0 0 0 10px}
+    .corner.br{bottom:-1px;right:-1px;border-width:0 3px 3px 0;border-radius:0 0 10px 0}
+    .scan-line { position:absolute; left:6px; right:6px; height:2px; background:linear-gradient(90deg,transparent,var(--brand) 30%,rgba(255,255,255,.8) 50%,var(--brand) 70%,transparent); border-radius:2px; opacity:0; animation:sweep 2.2s ease-in-out infinite; z-index:4; }
+    .scan-line.on { opacity:1; }
+    @keyframes sweep { 0%{top:6px} 50%{top:calc(100% - 8px)} 100%{top:6px} }
+    .preview-layer { position:fixed; inset:0; background:rgba(0,0,0,0.96); display:none; z-index:15; align-items:center; justify-content:center; }
+    .preview-layer.show { display:flex; }
+    #prev-img { max-width:min(92vw,420px); max-height:min(72dvh,560px); width:auto; height:auto; object-fit:contain; border-radius:16px; box-shadow:0 0 0 1px rgba(255,255,255,0.12); display:block; }
+    .frame-hint { position:absolute; bottom:-36px; left:50%; transform:translateX(-50%); white-space:nowrap; font-size:12px; font-weight:600; color:rgba(255,255,255,.9); text-shadow:0 1px 8px rgba(0,0,0,.9); background:rgba(0,0,0,.4); backdrop-filter:var(--blur); -webkit-backdrop-filter:var(--blur); padding:5px 16px; border-radius:20px; pointer-events:none; transition:opacity .25s; z-index:6; }
+    .bottom-bar { position:fixed; left:0; right:0; bottom:0; z-index:20; padding-bottom:max(28px,env(safe-area-inset-bottom,28px)); padding-top:18px; padding-inline:36px; background:linear-gradient(0deg,rgba(0,0,0,.90) 0%,transparent 100%); display:flex; align-items:center; justify-content:space-between; transition:opacity .25s; }
+    .gallery-btn { width:54px; height:54px; border-radius:14px; background:var(--glass); backdrop-filter:var(--blur); -webkit-backdrop-filter:var(--blur); border:1.5px solid rgba(255,255,255,.22); color:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; overflow:hidden; transition:transform .15s var(--spring); flex-shrink:0; }
+    .gallery-btn:active { transform:scale(.93); }
+    .gallery-btn .material-icons { font-size:26px; }
+    .gal-thumb { width:100%; height:100%; object-fit:cover; border-radius:12px; display:none; }
+    .gal-thumb.show { display:block; }
+    .gal-thumb.show ~ .material-icons { display:none; }
+    .shutter { width:80px; height:80px; border-radius:50%; border:4px solid var(--white); background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .12s; flex-shrink:0; }
+    .shutter:active { transform:scale(.93); }
+    .shutter-inner { width:64px; height:64px; border-radius:50%; background:var(--white); transition:transform .12s, background .15s; }
+    .shutter:active .shutter-inner { transform:scale(.88); background:rgba(220,220,220,.95); }
+    .flip-btn { width:54px; height:54px; border-radius:50%; background:var(--glass); backdrop-filter:var(--blur); -webkit-backdrop-filter:var(--blur); border:1.5px solid rgba(255,255,255,.22); color:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .15s var(--spring); flex-shrink:0; }
+    .flip-btn:active { transform:scale(.93) rotate(180deg); }
+    .flip-btn .material-icons { font-size:26px; }
+    .preview-bar { position:fixed; left:0; right:0; bottom:0; z-index:25; padding-bottom:max(28px,env(safe-area-inset-bottom,28px)); padding-top:18px; padding-inline:24px; background:linear-gradient(0deg,rgba(0,0,0,.90) 0%,transparent 100%); display:none; align-items:center; justify-content:center; gap:14px; }
+    .preview-bar.show { display:flex; }
+    .prev-btn { flex:1; max-width:160px; height:54px; border-radius:9999px; border:none; font-size:15px; font-weight:700; display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer; color:var(--white); transition:transform .12s var(--spring); }
+    .prev-btn:active { transform:scale(.95); }
+    .prev-btn .material-icons { font-size:20px; }
+    .btn-retake { background:rgba(239,68,68,.88); box-shadow:0 4px 16px rgba(239,68,68,.4); }
+    .btn-confirm { background:rgba(22,163,74,.90); box-shadow:0 4px 16px rgba(22,163,74,.4); }
+    .cam-error { position:absolute; inset:0; z-index:50; background:rgba(0,0,0,.93); display:none; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:32px 24px; text-align:center; }
+    .cam-error.show { display:flex; }
+    .cam-error-icon { width:64px; height:64px; border-radius:20px; background:rgba(239,68,68,.15); display:flex; align-items:center; justify-content:center; }
+    .cam-error-icon .material-icons { font-size:32px; color:var(--red); }
+    .cam-error h2 { font-size:20px; font-weight:700; }
+    .cam-error p { font-size:14px; color:rgba(255,255,255,.65); line-height:1.6; max-width:300px; }
+    .err-gallery-btn { margin-top:8px; padding:14px 28px; background:var(--brand); color:var(--white); border:none; border-radius:9999px; font-size:15px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:8px; transition:transform .12s var(--spring); }
+    .err-gallery-btn:active { transform:scale(.96); }
+    .err-gallery-btn .material-icons { font-size:20px; }
+    .err-back { font-size:13px; color:rgba(255,255,255,.45); text-decoration:none; margin-top:4px; }
+    @media (orientation:landscape) and (max-height:520px) {
+      .viewfinder { padding-bottom:calc(90px + var(--safe-b)); padding-inline:max(140px,22vw); }
+      .frame-wrap { width:min(52vw,260px); }
+      .bottom-bar { padding-inline:20px; }
+      .shutter { width:66px; height:66px; }
+      .shutter-inner { width:52px; height:52px; }
+    }
+    @media (max-width:360px) {
+      .shutter { width:70px; height:70px; }
+      .shutter-inner { width:56px; height:56px; }
+      .gallery-btn,.flip-btn { width:46px; height:46px; }
+    }
+  </style>
+<noscript><style>body{visibility:visible!important}</style></noscript>
+</head>
+<body>
+  <!-- Body section: camera viewport, controls, preview state, and fallback state. -->
+<div class="cam-root">
+  <!-- Live camera stream and flash overlay. -->
+  <video id="cam-video" autoplay playsinline muted></video>
+  <div class="flash" id="flash"></div>
+  <div class="dim"></div>
+
+  <!-- Top bar: back action and page title. -->
+  <header class="top-bar" id="top-bar">
+    <button class="top-btn" id="close-btn" aria-label="Rudi nyuma" type="button">
+      <span class="material-icons">arrow_back</span>
+    </button>
+    <h1 class="top-title" id="cam-title">Tambua Ugonjwa wa MLN</h1>
+  </header>
+
+  <!-- Viewfinder guides: framing box, scan line, and hint text. -->
+  <div class="viewfinder">
+    <div class="frame-wrap" id="frame-wrap">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="corner bl"></div><div class="corner br"></div>
+      <div class="scan-line" id="scan-line"></div>
+      <div class="preview-layer" id="preview-layer">
+        <img id="prev-img" src="" alt="Picha" />
+      </div>
+      <p class="frame-hint" id="frame-hint">Weka jani ndani ya fremu</p>
+    </div>
+  </div>
+
+  <!-- Capture controls: gallery, shutter, and camera flip. -->
+  <div class="bottom-bar" id="bottom-bar">
+    <button class="gallery-btn" id="gallery-btn" aria-label="Galari" type="button">
+      <img class="gal-thumb" id="gal-thumb" src="" alt="" />
+      <span class="material-icons">photo_library</span>
+    </button>
+    <button class="shutter" id="shutter-btn" aria-label="Piga picha" type="button">
+      <div class="shutter-inner"></div>
+    </button>
+    <button class="flip-btn" id="flip-btn" aria-label="Badilisha kamera" type="button">
+      <span class="material-icons">flip_camera_ios</span>
+    </button>
+  </div>
+
+  <!-- Preview actions: retake or confirm selected image. -->
+  <div class="preview-bar" id="preview-bar">
+    <button class="prev-btn btn-retake" id="retake-btn" type="button">
+      <span class="material-icons">close</span><span id="lbl-retake">Rudia</span>
+    </button>
+    <button class="prev-btn btn-confirm" id="confirm-btn" type="button">
+      <span class="material-icons">check</span><span id="lbl-confirm">Endelea</span>
+    </button>
+  </div>
+
+  <!-- Error fallback: shown when camera access is unavailable. -->
+  <div class="cam-error" id="cam-error">
+    <div class="cam-error-icon"><span class="material-icons">videocam_off</span></div>
+    <h2 id="err-title">Kamera Haipo</h2>
+    <p id="err-body">Ruhusa ya kamera imekatazwa. Unaweza kupakia picha kutoka galari yako.</p>
+    <button class="err-gallery-btn" id="err-gallery-btn" type="button">
+      <span class="material-icons">photo_library</span><span id="lbl-err-gallery">Chagua kutoka Galari</span>
+    </button>
+    <a href="/scan.html" class="err-back">Rudi nyuma</a>
+  </div>
+
+  <!-- Hidden canvas and file input used for processing captured or picked images. -->
+  <canvas id="capture-canvas" style="display:none;" aria-hidden="true"></canvas>
+  <input type="file" id="gallery-input" accept="image/*" style="display:none;" aria-hidden="true" />
+</div>
+
+<!-- This page is intentionally self-contained to keep permission and fallback logic together. -->
+    <!-- Script section: camera workflow controller for this page. -->
+<script>
+(function(){
+  'use strict';
+  const STORAGE_KEY='mskana_scan_image', LANG_KEY='mskana_language', MAX_DIM=1024, QUALITY=0.90;
+  // Append ?app=pwa in standalone mode so navigation keeps the installed-app context.
+  function pwaHref(path){ try{ var u=new URL(path,location.origin); if(window.matchMedia('(display-mode:standalone)').matches||navigator.standalone){u.searchParams.set('app','pwa');} return u.pathname+u.search+u.hash; }catch(_){return path;} }
+  const T={
+    sw:{ title:'Tambua Ugonjwa wa MLN', hint:'Weka jani ndani ya fremu', retake:'Rudia', confirm:'Endelea', err_title:'Kamera Haipo', err_body:'Ruhusa ya kamera imekatazwa. Unaweza kupakia picha kutoka galari yako.', err_gallery:'Chagua kutoka Galari', no_camera:'Kamera bado haijaanza.', no_image:'Hakuna picha.', store_err:'Hitilafu. Jaribu tena.' },
+    en:{ title:'Detect MLN Disease', hint:'Place leaf inside the frame', retake:'Retake', confirm:'Continue', err_title:'Camera Unavailable', err_body:'Camera permission denied. You can upload from gallery.', err_gallery:'Choose from Gallery', no_camera:'Camera not ready.', no_image:'No image.', store_err:'Storage error. Try again.' }
+  };
+  let stream=null, capturedData=null, facingMode='environment', lang='sw';
+  const $video=document.getElementById('cam-video');
+  const $canvas=document.getElementById('capture-canvas');
+  const $prevImg=document.getElementById('prev-img');
+  const $prevLayer=document.getElementById('preview-layer');
+  const $hint=document.getElementById('frame-hint');
+  const $scanLine=document.getElementById('scan-line');
+  const $topBar=document.getElementById('top-bar');
+  const $bottomBar=document.getElementById('bottom-bar');
+  const $previewBar=document.getElementById('preview-bar');
+  const $camError=document.getElementById('cam-error');
+  const $flash=document.getElementById('flash');
+  const $galInput=document.getElementById('gallery-input');
+  const $galThumb=document.getElementById('gal-thumb');
+
+  function t(k){ return (T[lang]||T.sw)[k]||k; }
+
+  function stopStream(){
+    if(stream){
+      stream.getTracks().forEach(function(track){ track.stop(); });
+      stream=null;
+    }
+  }
+
+  function hideError(){
+    $camError.classList.remove('show');
+  }
+
+  function initLang(){
+    try{ lang=localStorage.getItem(LANG_KEY)||'sw'; }catch(_){}
+    document.getElementById('cam-title').textContent=t('title');
+    $hint.textContent=t('hint');
+    document.getElementById('lbl-retake').textContent=t('retake');
+    document.getElementById('lbl-confirm').textContent=t('confirm');
+    document.getElementById('err-title').textContent=t('err_title');
+    document.getElementById('err-body').textContent=t('err_body');
+    document.getElementById('lbl-err-gallery').textContent=t('err_gallery');
+    document.documentElement.lang=lang;
+  }
+
+  async function startCamera(){
+    stopStream();
+
+    var tries = [
+      { video:{ facingMode:{ exact:facingMode }, width:{ ideal:1920 }, height:{ ideal:1080 } }, audio:false },
+      { video:{ facingMode:{ ideal:facingMode }, width:{ ideal:1920 }, height:{ ideal:1080 } }, audio:false },
+      { video:{ width:{ ideal:1920 }, height:{ ideal:1080 } }, audio:false }
+    ];
+
+    var lastErr = null;
+    for (var i = 0; i < tries.length; i++) {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia(tries[i]);
+        break;
+      } catch (err) {
+        lastErr = err;
+      }
+    }
+
+    if (!stream) {
+      console.warn('[cam]', lastErr ? lastErr.message : 'Cannot open camera');
+      showError();
+      return;
+    }
+
+    hideError();
+    $video.srcObject=stream;
+    await $video.play();
+
+    var track = stream.getVideoTracks()[0];
+    var settings = track && track.getSettings ? track.getSettings() : {};
+    var activeFacing = settings && settings.facingMode ? settings.facingMode : facingMode;
+    $video.classList.toggle('mirrored',activeFacing==='user');
+    $scanLine.classList.add('on');
+  }
+
+  function showError(){ $camError.classList.add('show'); $scanLine.classList.remove('on'); }
+
+  function triggerFlash(){
+    $flash.classList.remove('go');
+    void $flash.offsetWidth;
+    $flash.classList.add('go');
+  }
+
+  function capture(){
+    if(!stream||$video.readyState<2){ alert(t('no_camera')); return; }
+    triggerFlash();
+    const fw=document.getElementById('frame-wrap');
+    const fr=fw.getBoundingClientRect(), vr=$video.getBoundingClientRect();
+    const sx=$video.videoWidth/vr.width, sy=$video.videoHeight/vr.height;
+    const cx=(fr.left-vr.left)*sx, cy=(fr.top-vr.top)*sy;
+    const cw=fr.width*sx, ch=fr.height*sy;
+    $canvas.width=cw; $canvas.height=ch;
+    $canvas.getContext('2d').drawImage($video,cx,cy,cw,ch,0,0,cw,ch);
+    capturedData=$canvas.toDataURL('image/jpeg',QUALITY);
+    showPreview(capturedData,'cover');
+  }
+
+  /* drawSourceToCanvas - resizes a bitmap/image (already EXIF-corrected) onto $canvas. */
+  function drawSourceToCanvas(source){
+    let w=source.width,h=source.height;
+    if(Math.max(w,h)>MAX_DIM){ if(w>=h){h=Math.round(h*MAX_DIM/w);w=MAX_DIM;}else{w=Math.round(w*MAX_DIM/h);h=MAX_DIM;} }
+    $canvas.width=w; $canvas.height=h;
+    $canvas.getContext('2d').drawImage(source,0,0,w,h);
+    capturedData=$canvas.toDataURL('image/jpeg',QUALITY);
+    $galThumb.src=capturedData; $galThumb.classList.add('show');
+    showPreview(capturedData,'contain');
+  }
+
+  /*
+   * handleGallery - FIX: use createImageBitmap({imageOrientation:'from-image'}) so that
+   * EXIF rotation in mobile JPEG photos is applied before pixels reach the canvas.
+   * Without this, a portrait photo drawn sideways causes the classifier to always
+   * return "not_maize". Falls back to FileReader+Image for very old browsers.
+   */
+  function handleGallery(file){
+    if(!file) return;
+    hideError();
+    if(typeof createImageBitmap==='function'){
+      createImageBitmap(file,{imageOrientation:'from-image',resizeQuality:'high'})
+        .then(function(bitmap){ drawSourceToCanvas(bitmap); bitmap.close(); })
+        .catch(function(){
+          createImageBitmap(file)
+            .then(function(bitmap){ drawSourceToCanvas(bitmap); bitmap.close(); })
+            .catch(function(){ legacyHandleGallery(file); });
+        });
+    } else {
+      legacyHandleGallery(file);
+    }
+  }
+
+  function legacyHandleGallery(file){
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const img=new Image();
+      img.onload=()=>{ drawSourceToCanvas(img); };
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function showPreview(src,fit){
+    $prevImg.src=src; $prevImg.style.objectFit=fit;
+    $prevLayer.classList.add('show');
+    $hint.style.opacity='0'; $scanLine.classList.remove('on');
+    $topBar.style.opacity='0'; $bottomBar.style.opacity='0';
+    // Pause the live stream while preview is open to avoid visual overlap.
+    if($video && !$video.paused) $video.pause();
+    setTimeout(()=>{
+      $topBar.style.display='none'; $bottomBar.style.display='none';
+      $previewBar.classList.add('show');
+    },260);
+  }
+
+  function retake(){
+    capturedData=null;
+    $prevLayer.classList.remove('show'); $previewBar.classList.remove('show'); $prevImg.src='';
+    $topBar.style.display='flex'; $bottomBar.style.display='flex';
+    // Resume the stream when the user returns from preview to capture mode.
+    if($video && $video.paused && stream) $video.play().catch(()=>{});
+    requestAnimationFrame(()=>{
+      $topBar.style.opacity='1'; $bottomBar.style.opacity='1';
+      $hint.style.opacity='1'; $scanLine.classList.add('on');
+    });
+  }
+
+  function confirm(){
+    if(!capturedData){ alert(t('no_image')); return; }
+    try{ sessionStorage.setItem(STORAGE_KEY,capturedData); window.location.href=pwaHref('/results.html'); }
+    catch(err){ alert(t('store_err')); }
+  }
+
+  async function flipCamera(){
+    facingMode=facingMode==='environment'?'user':'environment';
+    await startCamera();
+  }
+
+  document.getElementById('shutter-btn').addEventListener('click',capture);
+  document.getElementById('gallery-btn').addEventListener('click',()=>$galInput.click());
+  document.getElementById('err-gallery-btn').addEventListener('click',()=>$galInput.click());
+  $galInput.addEventListener('change',e=>{ handleGallery(e.target.files[0]); $galInput.value=''; });
+  document.getElementById('retake-btn').addEventListener('click',retake);
+  document.getElementById('confirm-btn').addEventListener('click',confirm);
+  document.getElementById('flip-btn').addEventListener('click',flipCamera);
+  document.getElementById('close-btn').addEventListener('click',()=>{ history.length>1?history.back():(window.location.href=pwaHref('/scan.html')); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&capturedData)retake(); if(e.key===' '&&!capturedData){e.preventDefault();capture();} if(e.key==='Enter'&&capturedData)confirm(); });
+  window.addEventListener('pagehide',()=>{ stopStream(); });
+  window.addEventListener('beforeunload',()=>{ stopStream(); });
+
+  document.addEventListener('DOMContentLoaded',()=>{ initLang(); startCamera(); });
+})();
+</script>
+</body>
+</html>

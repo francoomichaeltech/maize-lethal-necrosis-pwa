@@ -1,0 +1,696 @@
+<!doctype html>
+<!-- history-detail.html - Detailed view for a single saved scan record. -->
+<html lang="sw" dir="ltr" style="background: #fafaf9">
+  <head>
+    <!-- Head: Metadata, icons, preload hints, and stylesheet resources. -->
+    <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href="/assets/fonts/material-icons.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/assets/css/tokens.css" as="style" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#16A34A" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/assets/images/icons/android/icon-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/icons/pwa/apple-touch-180x180.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="M-Skana" />
+    <style>
+      /* Critical inline styles to prevent FOUC before CSS loads. */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        background: #fafaf9;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: #fafaf9;
+        color: #1c1917;
+      }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #fff;
+        border-bottom: 1px solid #e7e5e4;
+        z-index: 200;
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/fonts/material-icons.css" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components/header.css" />
+    <link rel="stylesheet" href="/assets/css/components/nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/footer.css" />
+    <link rel="stylesheet" href="/assets/css/components/pwa-nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/modal.css" />
+    <link rel="stylesheet" href="/assets/css/components/buttons.css" />
+    <link rel="stylesheet" href="/assets/css/components/cards.css" />
+    <link rel="stylesheet" href="/assets/css/components/badge.css" />
+    <link rel="stylesheet" href="/assets/css/pages/results.css" />
+    <title>Maelezo ya Ukaguzi &middot; M-Skana</title>
+    <style>
+      /* Additional inline guards to stabilize first paint on this page. */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        background: #fafaf9;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: #fafaf9;
+        color: #1c1917;
+      }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #fff;
+        border-bottom: 1px solid #e7e5e4;
+        z-index: 200;
+      }
+      .main-content {
+        padding-top: 64px;
+      }
+      .page-back-btn {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #16a34a;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        margin-bottom: 0.75rem;
+        width: fit-content;
+        padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+        border-radius: 0.375rem;
+        border: 1.5px solid #bbf7d0;
+        background: #f0fdf4;
+      }
+      @media (max-width: 899px) {
+        .page-back-btn {
+          display: inline-flex;
+        }
+      }
+    </style>
+    <noscript
+      ><style>
+        body {
+          visibility: visible !important;
+        }
+      </style></noscript
+    >
+  </head>
+  <body class="page-wrapper">
+    <!-- Body: Page structure, UI sections, and user-facing content. -->
+    <a
+      href="#main-content"
+      class="skip-link"
+      data-sw="Ruka kwenda maudhui makuu"
+      data-en="Skip to main content"
+      >Ruka kwenda maudhui makuu</a
+    >
+
+    <!-- Top site header and desktop navigation. -->
+    <header class="site-header" role="banner" id="site-header">
+      <div class="container header-container">
+        <div class="header-brand">
+          <a
+            href="/index.html"
+            class="logo-link"
+            aria-label="M-Skana &middot; Nyumbani"
+          >
+            <img
+              src="/assets/images/icons/android/icon-96x96.png"
+              alt="M-Skana"
+              class="brand-logo"
+              width="32"
+              height="32"
+            />
+            <span class="brand-name">M-Skana</span>
+          </a>
+        </div>
+        <nav
+          class="main-nav main-nav--desktop"
+          role="navigation"
+          aria-label="Menyu kuu"
+        >
+          <ul class="nav-list" role="list">
+            <li>
+              <a href="index.html" class="nav-link"
+                ><span data-sw="Nyumbani" data-en="Home">Nyumbani</span></a
+              >
+            </li>
+            <li>
+              <a href="scan.html" class="nav-link"
+                ><span data-sw="Piga Picha" data-en="Scan">Piga Picha</span></a
+              >
+            </li>
+            <li>
+              <a href="history.html" class="nav-link"
+                ><span data-sw="Historia" data-en="History">Historia</span></a
+              >
+            </li>
+            <li>
+              <a href="guide.html" class="nav-link"
+                ><span data-sw="Mwongozo" data-en="Guide">Mwongozo</span></a
+              >
+            </li>
+            <li>
+              <a href="about.html" class="nav-link"
+                ><span data-sw="Kuhusu" data-en="About">Kuhusu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <div class="lang-selector" id="lang-selector">
+            <button
+              class="lang-selector-btn"
+              id="lang-selector-btn"
+              aria-label="Chagua lugha"
+              aria-expanded="false"
+              type="button"
+            >
+              <span class="material-icons" aria-hidden="true">language</span>
+              <span class="current-language" id="current-lang-label">SW</span>
+              <span class="material-icons chevron-icon" aria-hidden="true"
+                >expand_more</span
+              >
+            </button>
+            <div class="lang-dropdown" id="lang-dropdown" hidden>
+              <button
+                class="lang-option lang-option--active"
+                data-lang="sw"
+                type="button"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect width="300" height="200" fill="#1EB53A" />
+                  <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+                  <path
+                    d="M 0,200 L 300,0"
+                    stroke="#FCD116"
+                    stroke-width="84"
+                  />
+                  <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+                </svg>
+                <span class="lang-name">Kiswahili</span
+                ><span class="material-icons check-icon">check</span>
+              </button>
+              <button class="lang-option" data-lang="en" type="button">
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <clipPath id="c1">
+                    <path
+                      d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                    />
+                  </clipPath>
+                  <rect width="300" height="200" fill="#012169" />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    stroke="#fff"
+                    stroke-width="40"
+                  />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    clip-path="url(#c1)"
+                    stroke="#C8102E"
+                    stroke-width="26"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#fff"
+                    stroke-width="66"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#C8102E"
+                    stroke-width="40"
+                  />
+                </svg>
+                <span class="lang-name">English</span
+                ><span class="material-icons check-icon check-icon--hidden"
+                  >check</span
+                >
+              </button>
+            </div>
+          </div>
+          <button
+            class="mobile-menu-btn"
+            id="mobile-menu-btn"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Fungua menyu"
+            type="button"
+          >
+            <span class="menu-bar"></span><span class="menu-bar"></span
+            ><span class="menu-bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile navigation drawer and backdrop. -->
+    <div
+      class="mobile-nav-backdrop"
+      id="mobile-nav-backdrop"
+      aria-hidden="true"
+    ></div>
+    <nav
+      class="mobile-nav"
+      id="mobile-nav"
+      role="navigation"
+      aria-label="Menyu ya simu"
+      aria-hidden="true"
+      inert
+    >
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img
+            src="/assets/images/icons/android/icon-72x72.png"
+            alt=""
+            class="mobile-nav-logo"
+            width="28"
+            height="28"
+          /><span class="mobile-nav-brand-name">M-Skana</span>
+        </div>
+        <button
+          class="mobile-nav-close"
+          id="mobile-nav-close"
+          aria-label="Funga menyu"
+          type="button"
+        >
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+      <ul class="mobile-nav-list" role="list">
+        <li>
+          <a href="index.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >home</span
+            >
+            <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+          </a>
+        </li>
+        <li>
+          <a href="scan.html" class="mobile-nav-link mobile-nav-link--cta">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >camera_alt</span
+            >
+            <span data-sw="Piga Picha" data-en="Scan">Piga Picha</span>
+          </a>
+        </li>
+        <li>
+          <a href="history.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >history</span
+            >
+            <span data-sw="Historia" data-en="History">Historia</span>
+          </a>
+        </li>
+        <li>
+          <a href="guide.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >menu_book</span
+            >
+            <span data-sw="Mwongozo" data-en="Guide">Mwongozo</span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >info</span
+            >
+            <span data-sw="Kuhusu" data-en="About">Kuhusu</span>
+          </a>
+        </li>
+        <li>
+          <a href="feedback.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >chat_bubble</span
+            >
+            <span data-sw="Toa Maoni" data-en="Feedback">Toa Maoni</span>
+          </a>
+        </li>
+        <li>
+          <a href="support.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >support_agent</span
+            >
+            <span data-sw="Msaada" data-en="Support">Msaada</span>
+          </a>
+        </li>
+        <li>
+          <a href="legal/terms.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >description</span
+            >
+            <span data-sw="Masharti ya Matumizi" data-en="Terms of Use"
+              >Masharti ya Matumizi</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="legal/privacy.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >shield</span
+            >
+            <span data-sw="Sera ya Faragha" data-en="Privacy Policy"
+              >Sera ya Faragha</span
+            >
+          </a>
+        </li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <p
+          class="mobile-nav-footer-label"
+          data-sw="Chagua Lugha"
+          data-en="Select Language"
+        >
+          Chagua Lugha
+        </p>
+        <div class="mobile-nav-language">
+          <button
+            class="mobile-lang-option mobile-lang-option--active"
+            data-lang="sw"
+            type="button"
+          >
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="300" height="200" fill="#1EB53A" />
+              <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+              <path d="M 0,200 L 300,0" stroke="#FCD116" stroke-width="84" />
+              <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+            </svg>
+            <span class="mobile-lang-name">Kiswahili</span>
+          </button>
+          <button class="mobile-lang-option" data-lang="en" type="button">
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <clipPath id="c2">
+                <path
+                  d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                />
+              </clipPath>
+              <rect width="300" height="200" fill="#012169" />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                stroke="#fff"
+                stroke-width="40"
+              />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                clip-path="url(#c2)"
+                stroke="#C8102E"
+                stroke-width="26"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#fff"
+                stroke-width="66"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#C8102E"
+                stroke-width="40"
+              />
+            </svg>
+            <span class="mobile-lang-name">English</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main detail content area. -->
+    <main id="main-content" class="main-content results-page" role="main">
+      <div
+        class="container container--narrow"
+        style="padding-bottom: var(--sp-16)"
+      >
+        <!-- Mobile back button to history list. -->
+        <a
+          href="/history.html"
+          class="page-back-btn"
+          data-back-btn
+          data-back-fallback="/history.html"
+          aria-label="Back to History"
+        >
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+          <span data-sw="Historia" data-en="History">Historia</span>
+        </a>
+
+        <!-- Empty state when the selected record cannot be found. -->
+        <div
+          id="not-found"
+          hidden
+          style="
+            text-align: center;
+            padding: var(--sp-16) 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--sp-4);
+          "
+        >
+          <div
+            style="
+              width: 72px;
+              height: 72px;
+              border-radius: var(--radius-2xl);
+              background: var(--clr-surface-2);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--clr-text-muted);
+            "
+          >
+            <span class="material-icons" style="font-size: 32px"
+              >search_off</span
+            >
+          </div>
+          <h2
+            style="
+              font-family: var(--font-display);
+              font-size: var(--text-xl);
+              font-weight: var(--fw-bold);
+              color: var(--clr-text);
+            "
+            data-sw="Ukaguzi Haupatikani"
+            data-en="Scan Not Found"
+          >
+            Ukaguzi Haupatikani
+          </h2>
+          <p
+            style="font-size: var(--text-sm); color: var(--clr-text-muted)"
+            data-sw="Rekodi hii haipo kwenye historia yako."
+            data-en="This record is not in your scan history."
+          >
+            Rekodi hii haipo kwenye historia yako.
+          </p>
+          <a href="/history.html" class="btn btn--primary"
+            ><span class="material-icons">history</span
+            ><span data-sw="Angalia Historia" data-en="View History"
+              >Angalia Historia</span
+            ></a
+          >
+        </div>
+
+        <!-- Loaded scan detail content. -->
+        <div id="detail-content" hidden>
+          <div
+            class="result-image-wrap"
+            id="detail-image-wrap"
+            style="margin-bottom: var(--sp-6)"
+          >
+            <img
+              id="detail-image"
+              src=""
+              alt="Picha ya ukaguzi"
+              class="result-image"
+            />
+          </div>
+
+          <div
+            class="verdict-card"
+            id="detail-verdict-card"
+            style="margin-bottom: var(--sp-5)"
+          >
+            <span
+              class="material-icons verdict-icon"
+              id="detail-icon"
+              aria-hidden="true"
+              >help</span
+            >
+            <h1
+              class="verdict-title"
+              id="detail-title"
+              style="margin-bottom: var(--sp-4)"
+            >
+              -
+            </h1>
+
+            <div class="confidence-row">
+              <span
+                class="confidence-label"
+                data-sw="Kiwango cha Uhakika"
+                data-en="Confidence Level"
+                >Kiwango cha Uhakika</span
+              >
+              <span class="confidence-value" id="detail-conf-value">-</span>
+            </div>
+            <div class="confidence-bar-track" aria-hidden="true">
+              <div
+                class="confidence-bar-fill"
+                id="detail-conf-bar"
+                style="width: 0%; transition: width 800ms ease-out"
+              ></div>
+            </div>
+          </div>
+
+          <div class="recommendation-card" style="margin-bottom: var(--sp-4)">
+            <div class="recommendation-title">
+              <span class="material-icons" aria-hidden="true"
+                >tips_and_updates</span
+              >
+              <span data-sw="Mapendekezo" data-en="Recommendation"
+                >Mapendekezo</span
+              >
+            </div>
+            <p class="recommendation-text" id="detail-rec">-</p>
+            <p class="detail-rec-date">
+              <span
+                class="material-icons detail-rec-date-icon"
+                aria-hidden="true"
+                >schedule</span
+              >
+              <span id="detail-date">-</span>
+            </p>
+          </div>
+
+          <div style="margin-bottom: var(--sp-5)"></div>
+
+          <div style="display: flex; flex-direction: column; gap: var(--sp-3)">
+            <a href="/scan.html" class="btn btn--primary btn--full btn--lg">
+              <span class="material-icons">camera_alt</span>
+              <span data-sw="Piga Picha Nyingine" data-en="Scan Another Leaf"
+                >Piga Picha Nyingine</span
+              >
+            </a>
+            <button
+              class="btn btn--ghost btn--full"
+              id="detail-delete-btn"
+              type="button"
+            >
+              <span class="material-icons">delete</span>
+              <span data-sw="Futa Rekodi Hii" data-en="Delete This Record"
+                >Futa Rekodi Hii</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Compact footer links. -->
+    <footer class="footer-slim" role="contentinfo">
+      <div class="container footer-slim-inner">
+        <span class="footer-slim-copy"
+          >© 2026 M-Skana. All rights reserved.</span
+        >
+        <div class="footer-slim-links">
+          <a href="/legal/privacy.html" class="footer-slim-link">Privacy</a>
+          <a href="/legal/terms.html" class="footer-slim-link">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: page-specific and shared runtime modules. -->
+    <script src="/assets/js/core/storage.js"></script>
+    <script src="/assets/js/modules/terms-guard.js"></script>
+    <script src="/assets/js/core/events.js"></script>
+    <script src="/assets/js/modules/language.js"></script>
+    <script src="/assets/js/modules/nav.js"></script>
+    <script src="/assets/js/modules/pwa.js"></script>
+    <script src="/assets/js/core/app.js"></script>
+    <script src="/assets/js/data/verdicts.js"></script>
+    <script src="/assets/js/pages/history-detail.js"></script>
+
+    <!-- Mobile bottom navigation. -->
+    <nav class="pwa-bottom-nav" id="pwa-bottom-nav" aria-label="Menyu ya chini">
+      <a href="/index.html" class="pwa-nav-item" data-page="index">
+        <span class="material-icons" aria-hidden="true">home</span>
+        <span class="pwa-nav-label" data-sw="Nyumbani" data-en="Home"
+          >Nyumbani</span
+        >
+      </a>
+      <a href="/scan.html" class="pwa-nav-item" data-page="scan">
+        <span class="material-icons" aria-hidden="true">camera_alt</span>
+        <span class="pwa-nav-label" data-sw="Piga Picha" data-en="Scan"
+          >Piga Picha</span
+        >
+      </a>
+      <a href="/guide.html" class="pwa-nav-item" data-page="guide">
+        <span class="material-icons" aria-hidden="true">menu_book</span>
+        <span class="pwa-nav-label" data-sw="Mwongozo" data-en="Guide"
+          >Mwongozo</span
+        >
+      </a>
+      <a href="/about.html" class="pwa-nav-item" data-page="about">
+        <span class="material-icons" aria-hidden="true">info</span>
+        <span class="pwa-nav-label" data-sw="Kuhusu" data-en="About"
+          >Kuhusu</span
+        >
+      </a>
+    </nav>
+  </body>
+</html>

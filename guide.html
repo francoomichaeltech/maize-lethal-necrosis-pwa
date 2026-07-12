@@ -1,0 +1,963 @@
+<!doctype html>
+<!-- guide.html - Educational content and practical MLN guidance for farmers. -->
+<html lang="sw" dir="ltr" style="background: #fafaf9">
+  <head>
+    <!-- Head: Metadata, icons, preload hints, and stylesheet resources. -->
+    <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href="/assets/fonts/material-icons.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/assets/css/tokens.css" as="style" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Mwongozo kamili wa ugonjwa wa MLN - dalili, sababu, na njia za kuzuia."
+    />
+    <meta name="theme-color" content="#16A34A" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/assets/images/icons/android/icon-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/icons/pwa/apple-touch-180x180.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="M-Skana" />
+    <style>
+      /* Critical inline styles to prevent FOUC before CSS loads. */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        background: #fafaf9;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: #fafaf9;
+        color: #1c1917;
+      }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #fff;
+        border-bottom: 1px solid #e7e5e4;
+        z-index: 200;
+      }
+    </style>
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/fonts/material-icons.css" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components/header.css" />
+    <link rel="stylesheet" href="/assets/css/components/nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/footer.css" />
+    <link rel="stylesheet" href="/assets/css/components/pwa-nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/modal.css" />
+    <link rel="stylesheet" href="/assets/css/components/buttons.css" />
+    <link rel="stylesheet" href="/assets/css/components/cards.css" />
+    <link rel="stylesheet" href="/assets/css/components/badge.css" />
+    <link rel="stylesheet" href="/assets/css/pages/history.css" />
+    <title>Mwongozo wa MLN &middot; M-Skana</title>
+    <style>
+      /* Additional inline guards to stabilize first paint on this page. */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        background: #fafaf9;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: #fafaf9;
+        color: #1c1917;
+      }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #fff;
+        border-bottom: 1px solid #e7e5e4;
+        z-index: 200;
+      }
+      .main-content {
+        padding-top: 64px;
+      }
+      .page-back-btn {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #16a34a;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        margin-bottom: 0.75rem;
+        width: fit-content;
+        padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+        border-radius: 0.375rem;
+        border: 1.5px solid #bbf7d0;
+        background: #f0fdf4;
+      }
+      .guide-cta-copy {
+        text-align: left;
+      }
+      @media (min-width: 1024px) {
+        .guide-cta-copy {
+          max-width: 760px;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+        }
+      }
+      @media (max-width: 899px) {
+        .page-back-btn {
+          display: inline-flex;
+        }
+      }
+    </style>
+    <noscript
+      ><style>
+        body {
+          visibility: visible !important;
+        }
+      </style></noscript
+    >
+  </head>
+  <body class="page-wrapper">
+    <!-- Body: Page structure, UI sections, and user-facing content. -->
+    <a
+      href="#main-content"
+      class="skip-link"
+      data-sw="Ruka kwenda maudhui makuu"
+      data-en="Skip to main content"
+      >Ruka kwenda maudhui makuu</a
+    >
+
+    <header class="site-header" role="banner" id="site-header">
+      <div class="container header-container">
+        <div class="header-brand">
+          <a
+            href="index.html"
+            class="logo-link"
+            aria-label="M-Skana &middot; Nyumbani"
+          >
+            <img
+              src="/assets/images/icons/android/icon-96x96.png"
+              alt="M-Skana Logo"
+              class="brand-logo"
+              width="32"
+              height="32"
+            />
+            <span class="brand-name">M-Skana</span>
+          </a>
+        </div>
+
+        <nav
+          class="main-nav main-nav--desktop"
+          role="navigation"
+          aria-label="Menyu kuu"
+        >
+          <ul class="nav-list" role="list">
+            <li>
+              <a href="index.html" class="nav-link"
+                ><span data-sw="Nyumbani" data-en="Home">Nyumbani</span></a
+              >
+            </li>
+            <li>
+              <a href="scan.html" class="nav-link"
+                ><span data-sw="Piga Picha" data-en="Scan">Piga Picha</span></a
+              >
+            </li>
+            <li>
+              <a href="history.html" class="nav-link"
+                ><span data-sw="Historia" data-en="History">Historia</span></a
+              >
+            </li>
+            <li>
+              <a href="guide.html" class="nav-link"
+                ><span data-sw="Mwongozo" data-en="Guide">Mwongozo</span></a
+              >
+            </li>
+            <li>
+              <a href="about.html" class="nav-link"
+                ><span data-sw="Kuhusu" data-en="About">Kuhusu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-selector" id="lang-selector">
+            <button
+              class="lang-selector-btn"
+              id="lang-selector-btn"
+              aria-label="Chagua lugha"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              type="button"
+            >
+              <span class="material-icons" aria-hidden="true">language</span>
+              <span class="current-language" id="current-lang-label">SW</span>
+              <span class="material-icons chevron-icon" aria-hidden="true"
+                >expand_more</span
+              >
+            </button>
+
+            <div
+              class="lang-dropdown"
+              id="lang-dropdown"
+              hidden
+              role="listbox"
+              aria-label="Chagua lugha"
+            >
+              <button
+                class="lang-option lang-option--active"
+                data-lang="sw"
+                type="button"
+                role="option"
+                aria-selected="true"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect width="300" height="200" fill="#1EB53A" />
+                  <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+                  <path
+                    d="M 0,200 L 300,0"
+                    stroke="#FCD116"
+                    stroke-width="84"
+                  />
+                  <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+                </svg>
+                <span class="lang-name">Kiswahili</span>
+                <span class="material-icons check-icon" aria-hidden="true"
+                  >check</span
+                >
+              </button>
+
+              <button
+                class="lang-option"
+                data-lang="en"
+                type="button"
+                role="option"
+                aria-selected="false"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <clipPath id="flag-clip-desktop">
+                    <path
+                      d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                    />
+                  </clipPath>
+                  <rect width="300" height="200" fill="#012169" />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    stroke="#fff"
+                    stroke-width="40"
+                  />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    clip-path="url(#flag-clip-desktop)"
+                    stroke="#C8102E"
+                    stroke-width="26"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#fff"
+                    stroke-width="66"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#C8102E"
+                    stroke-width="40"
+                  />
+                </svg>
+                <span class="lang-name">English</span>
+                <span
+                  class="material-icons check-icon check-icon--hidden"
+                  aria-hidden="true"
+                  >check</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="mobile-menu-btn"
+            id="mobile-menu-btn"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Fungua menyu"
+            type="button"
+          >
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div
+      class="mobile-nav-backdrop"
+      id="mobile-nav-backdrop"
+      aria-hidden="true"
+    ></div>
+
+    <nav
+      class="mobile-nav"
+      id="mobile-nav"
+      role="navigation"
+      aria-label="Menyu ya simu"
+      aria-hidden="true"
+      inert
+    >
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img
+            src="/assets/images/icons/android/icon-72x72.png"
+            alt="M-Skana Logo"
+            class="mobile-nav-logo"
+            width="28"
+            height="28"
+          />
+          <span class="mobile-nav-brand-name">M-Skana</span>
+        </div>
+        <button
+          class="mobile-nav-close"
+          id="mobile-nav-close"
+          aria-label="Funga menyu"
+          type="button"
+        >
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+      </div>
+
+      <ul class="mobile-nav-list" role="list">
+        <li>
+          <a href="index.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >home</span
+            >
+            <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+          </a>
+        </li>
+        <li>
+          <a href="scan.html" class="mobile-nav-link mobile-nav-link--cta">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >camera_alt</span
+            >
+            <span data-sw="Piga Picha" data-en="Scan">Piga Picha</span>
+          </a>
+        </li>
+        <li>
+          <a href="history.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >history</span
+            >
+            <span data-sw="Historia" data-en="History">Historia</span>
+          </a>
+        </li>
+        <li>
+          <a href="guide.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >menu_book</span
+            >
+            <span data-sw="Mwongozo" data-en="Guide">Mwongozo</span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >info</span
+            >
+            <span data-sw="Kuhusu" data-en="About">Kuhusu</span>
+          </a>
+        </li>
+        <li>
+          <a href="feedback.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >chat_bubble</span
+            >
+            <span data-sw="Toa Maoni" data-en="Feedback">Toa Maoni</span>
+          </a>
+        </li>
+        <li>
+          <a href="support.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >support_agent</span
+            >
+            <span data-sw="Msaada" data-en="Support">Msaada</span>
+          </a>
+        </li>
+        <li>
+          <a href="legal/terms.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >description</span
+            >
+            <span data-sw="Masharti ya Matumizi" data-en="Terms of Use"
+              >Masharti ya Matumizi</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="legal/privacy.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >shield</span
+            >
+            <span data-sw="Sera ya Faragha" data-en="Privacy Policy"
+              >Sera ya Faragha</span
+            >
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-nav-footer">
+        <p
+          class="mobile-nav-footer-label"
+          data-sw="Chagua Lugha"
+          data-en="Select Language"
+        >
+          Chagua Lugha
+        </p>
+        <div class="mobile-nav-language">
+          <button
+            class="mobile-lang-option mobile-lang-option--active"
+            data-lang="sw"
+            type="button"
+          >
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect width="300" height="200" fill="#1EB53A" />
+              <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+              <path d="M 0,200 L 300,0" stroke="#FCD116" stroke-width="84" />
+              <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+            </svg>
+            <span class="mobile-lang-name">Kiswahili</span>
+          </button>
+          <button class="mobile-lang-option" data-lang="en" type="button">
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <clipPath id="flag-clip-mobile">
+                <path
+                  d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                />
+              </clipPath>
+              <rect width="300" height="200" fill="#012169" />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                stroke="#fff"
+                stroke-width="40"
+              />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                clip-path="url(#flag-clip-mobile)"
+                stroke="#C8102E"
+                stroke-width="26"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#fff"
+                stroke-width="66"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#C8102E"
+                stroke-width="40"
+              />
+            </svg>
+            <span class="mobile-lang-name">English</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main
+      id="main-content"
+      class="main-content guide-page desktop-page-spacing"
+      role="main"
+    >
+      <div
+        class="container container--narrow"
+        style="padding-bottom: var(--sp-16)"
+      >
+        <a
+          href="/index.html"
+          class="page-back-btn"
+          data-back-btn
+          data-back-fallback="/index.html"
+          aria-label="Home"
+        >
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+          <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+        </a>
+
+        <h1
+          style="
+            font-family: var(--font-display);
+            font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+            font-weight: var(--fw-extrabold);
+            color: var(--clr-text);
+            letter-spacing: var(--ls-tight);
+            margin-bottom: var(--sp-2);
+          "
+          data-sw="Mwongozo wa Ugonjwa wa MLN"
+          data-en="MLN Disease Guide"
+        >
+          Mwongozo wa Ugonjwa wa MLN
+        </h1>
+        <p
+          style="color: var(--clr-text-secondary); margin-bottom: var(--sp-6)"
+          data-sw="Jifunze kutambua dalili za MLN mapema, kujikinga, na kuchukua hatua sahihi ili kulinda mazao yako ya mahindi."
+          data-en="Learn how to identify MLN symptoms early, prevent infection, and take the right action to protect your maize crop."
+        >
+          Jifunze kutambua dalili za MLN mapema, kujikinga, na kuchukua hatua
+          sahihi ili kulinda mazao yako ya mahindi.
+        </p>
+
+        <!-- MLN basics section. -->
+        <section
+          style="margin-bottom: var(--sp-10)"
+          aria-labelledby="what-is-mln"
+        >
+          <h2
+            id="what-is-mln"
+            style="
+              font-family: var(--font-display);
+              font-size: var(--text-xl);
+              font-weight: var(--fw-bold);
+              color: var(--clr-text);
+              margin-bottom: var(--sp-4);
+              display: flex;
+              align-items: center;
+              gap: var(--sp-2);
+            "
+          >
+            <span
+              style="
+                width: 32px;
+                height: 32px;
+                border-radius: var(--radius-base);
+                background: var(--clr-brand-light);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              "
+              ><span
+                class="material-icons"
+                style="font-size: 18px; color: var(--clr-brand)"
+                >info</span
+              ></span
+            >
+            <span data-sw="MLN ni nini" data-en="What Is MLN">MLN ni nini</span>
+          </h2>
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <p
+              data-sw="MLN ni ugonjwa hatari unaoathiri zao la mahindi. Husababishwa na mchanganyiko wa virusi viwili: Maize Chlorotic Mottle Virus pamoja na SCMV au WSMV."
+              data-en="MLN is a serious disease that affects maize. It is caused by a combination of two viruses: Maize Chlorotic Mottle Virus together with SCMV or WSMV."
+            >
+              MLN ni ugonjwa hatari unaoathiri zao la mahindi. Husababishwa na
+              mchanganyiko wa virusi viwili: Maize Chlorotic Mottle Virus pamoja
+              na SCMV au WSMV.
+            </p>
+            <p
+              data-sw="Ugonjwa huu huenea kwa urahisi na unaweza kupunguza mavuno kwa kiwango kikubwa. Usipodhibitiwa mapema, unaweza kusababisha hasara kubwa kwa mkulima."
+              data-en="This disease spreads easily and can cause major yield loss. If not controlled early, it can lead to serious losses for farmers."
+            >
+              Ugonjwa huu huenea kwa urahisi na unaweza kupunguza mavuno kwa
+              kiwango kikubwa. Usipodhibitiwa mapema, unaweza kusababisha hasara
+              kubwa kwa mkulima.
+            </p>
+          </div>
+        </section>
+
+        <!-- Symptom identification section. -->
+        <section style="margin-bottom: var(--sp-10)" aria-labelledby="symptoms">
+          <h2
+            id="symptoms"
+            style="
+              font-family: var(--font-display);
+              font-size: var(--text-xl);
+              font-weight: var(--fw-bold);
+              color: var(--clr-text);
+              margin-bottom: var(--sp-4);
+              display: flex;
+              align-items: center;
+              gap: var(--sp-2);
+            "
+          >
+            <span
+              style="
+                width: 32px;
+                height: 32px;
+                border-radius: var(--radius-base);
+                background: var(--clr-warning-bg);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              "
+              ><span
+                class="material-icons"
+                style="font-size: 18px; color: var(--clr-warning)"
+                >visibility</span
+              ></span
+            >
+            <span data-sw="Dalili za MLN" data-en="MLN Symptoms"
+              >Dalili za MLN</span
+            >
+          </h2>
+          <div class="steps-list">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <p
+                  class="step-title"
+                  data-sw="Mistari ya njano kwenye majani"
+                  data-en="Yellow streaks on leaves"
+                >
+                  Mistari ya njano kwenye majani
+                </p>
+                <p
+                  class="step-body"
+                  data-sw="Majani huanza kuonyesha mistari ya njano au rangi iliyochanganyika. Mara nyingi hii ndiyo dalili ya kwanza kuonekana, hivyo ni muhimu kuikagua mapema."
+                  data-en="Leaves start to show yellow streaks or mixed color patterns. This is often the first sign, so early checking is important."
+                >
+                  Majani huanza kuonyesha mistari ya njano au rangi
+                  iliyochanganyika. Mara nyingi hii ndiyo dalili ya kwanza
+                  kuonekana, hivyo ni muhimu kuikagua mapema.
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <p
+                  class="step-title"
+                  data-sw="Majani hukauka kuanzia juu"
+                  data-en="Leaves dry from the top"
+                >
+                  Majani hukauka kuanzia juu
+                </p>
+                <p
+                  class="step-body"
+                  data-sw="Majani huanza kukauka kuanzia ncha ya juu. Kadri ugonjwa unavyoendelea, ukavu hushuka chini na mmea huanza kudhoofika zaidi."
+                  data-en="Leaves begin to dry from the tip. As the disease progresses, the dryness moves downward and the plant becomes weaker."
+                >
+                  Majani huanza kukauka kuanzia ncha ya juu. Kadri ugonjwa
+                  unavyoendelea, ukavu hushuka chini na mmea huanza kudhoofika
+                  zaidi.
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <p
+                  class="step-title"
+                  data-sw="Bua huwa dogo na nafaka chache"
+                  data-en="Small cob with few grains"
+                >
+                  Bua huwa dogo na nafaka chache
+                </p>
+                <p
+                  class="step-body"
+                  data-sw="Mmea ulioathirika unaweza kutoa bua dogo sana. Wakati mwingine mmea hauzai kabisa, na ukizaa nafaka huwa chache, ndogo, au dhaifu."
+                  data-en="An infected plant may produce a very small cob. In some cases it produces no cob at all, and if it does, grains are few, small, or weak."
+                >
+                  Mmea ulioathirika unaweza kutoa bua dogo sana. Wakati mwingine
+                  mmea hauzai kabisa, na ukizaa nafaka huwa chache, ndogo, au
+                  dhaifu.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Prevention and field protection section. -->
+        <section
+          style="margin-bottom: var(--sp-10)"
+          aria-labelledby="prevention"
+        >
+          <h2
+            id="prevention"
+            style="
+              font-family: var(--font-display);
+              font-size: var(--text-xl);
+              font-weight: var(--fw-bold);
+              color: var(--clr-text);
+              margin-bottom: var(--sp-4);
+              display: flex;
+              align-items: center;
+              gap: var(--sp-2);
+            "
+          >
+            <span
+              style="
+                width: 32px;
+                height: 32px;
+                border-radius: var(--radius-base);
+                background: var(--clr-brand-light);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+              "
+              ><span
+                class="material-icons"
+                style="font-size: 18px; color: var(--clr-brand)"
+                >shield</span
+              ></span
+            >
+            <span
+              data-sw="Jinsi ya kujikinga"
+              data-en="How to Protect Your Farm"
+              >Jinsi ya kujikinga</span
+            >
+          </h2>
+          <div class="steps-list">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <p
+                  class="step-title"
+                  data-sw="Tumia mbegu safi na bora"
+                  data-en="Use clean and quality seed"
+                >
+                  Tumia mbegu safi na bora
+                </p>
+                <p
+                  class="step-body"
+                  data-sw="Nunua mbegu kutoka kwa wauzaji au wazalishaji wanaoaminika. Mbegu bora hupunguza hatari ya kuanza msimu na maambukizi shambani."
+                  data-en="Buy seed from trusted sellers or producers. Good seed lowers the risk of starting the season with infection in your field."
+                >
+                  Nunua mbegu kutoka kwa wauzaji au wazalishaji wanaoaminika.
+                  Mbegu bora hupunguza hatari ya kuanza msimu na maambukizi
+                  shambani.
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <p
+                  class="step-title"
+                  data-sw="Dhibiti wadudu wanaosambaza ugonjwa"
+                  data-en="Control disease spreading insects"
+                >
+                  Dhibiti wadudu wanaosambaza ugonjwa
+                </p>
+                <p
+                  class="step-body"
+                  data-sw="Baadhi ya wadudu husambaza virusi vya MLN kutoka mmea mmoja kwenda mwingine. Tumia njia salama za kudhibiti wadudu, kama dawa sahihi na mbinu za asili, ili kupunguza kuenea kwa ugonjwa."
+                  data-en="Some insects spread MLN viruses from one plant to another. Use safe pest control methods, including proper pesticides and natural techniques, to reduce spread."
+                >
+                  Baadhi ya wadudu husambaza virusi vya MLN kutoka mmea mmoja
+                  kwenda mwingine. Tumia njia salama za kudhibiti wadudu, kama
+                  dawa sahihi na mbinu za asili, ili kupunguza kuenea kwa
+                  ugonjwa.
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <p
+                  class="step-title"
+                  data-sw="Badilisha mazao kila msimu"
+                  data-en="Rotate crops every season"
+                >
+                  Badilisha mazao kila msimu
+                </p>
+                <p
+                  class="step-body"
+                  data-sw="Baada ya kuvuna mahindi, panda mazao mengine kama maharagwe au mtama. Hii husaidia kupunguza kuendelea kwa ugonjwa shambani na kuboresha afya ya udongo."
+                  data-en="After harvesting maize, plant other crops such as beans or sorghum. This helps reduce disease persistence in the field and improves soil health."
+                >
+                  Baada ya kuvuna mahindi, panda mazao mengine kama maharagwe au
+                  mtama. Hii husaidia kupunguza kuendelea kwa ugonjwa shambani
+                  na kuboresha afya ya udongo.
+                </p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <p
+                  class="step-title"
+                  data-sw="Ondoa mimea iliyoathirika mapema"
+                  data-en="Remove infected plants early"
+                >
+                  Ondoa mimea iliyoathirika mapema
+                </p>
+                <p
+                  class="step-body"
+                  data-sw="Ukiona dalili za MLN, ng'oa mmea huo mara moja. Uchome au uzike mbali na shamba ili ugonjwa usisambae kwenye mimea mingine."
+                  data-en="If you see MLN symptoms, uproot that plant immediately. Burn it or bury it away from the field so the disease does not spread to other plants."
+                >
+                  Ukiona dalili za MLN, ng'oa mmea huo mara moja. Uchome au
+                  uzike mbali na shamba ili ugonjwa usisambae kwenye mimea
+                  mingine.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Final call-to-action section. -->
+        <div
+          style="
+            background: var(--clr-brand-light);
+            border: 1.5px solid var(--clr-primary-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--sp-6);
+            text-align: center;
+          "
+        >
+          <h3
+            style="
+              font-family: var(--font-display);
+              font-size: var(--text-lg);
+              font-weight: var(--fw-bold);
+              color: var(--clr-brand);
+              margin-bottom: var(--sp-3);
+            "
+            data-sw="Kagua mahindi yako"
+            data-en="Check your maize"
+          >
+            Kagua mahindi yako
+          </h3>
+          <p
+            class="guide-cta-copy"
+            style="
+              font-size: var(--text-sm);
+              color: var(--clr-primary-800);
+              margin-bottom: var(--sp-3);
+            "
+            data-sw="Angalia mimea yako mara kwa mara ukiwa shambani, hasa majani, bua, na ukuaji wa mmea. Ukiona dalili zisizo za kawaida, chukua hatua mapema ili kuzuia hasara zaidi."
+            data-en="Check your plants regularly in the field, especially leaves, cobs, and overall growth. If you notice unusual signs, take action early to prevent more loss."
+          >
+            Angalia mimea yako mara kwa mara ukiwa shambani, hasa majani, bua,
+            na ukuaji wa mmea. Ukiona dalili zisizo za kawaida, chukua hatua
+            mapema ili kuzuia hasara zaidi.
+          </p>
+          <p
+            class="guide-cta-copy"
+            style="
+              font-size: var(--text-sm);
+              color: var(--clr-primary-800);
+              margin-bottom: var(--sp-5);
+            "
+            data-sw="Tumia AI ya M-Skana kukagua kama mahindi yako yana dalili za MLN."
+            data-en="Use M-Skana AI to check whether your maize has signs of MLN."
+          >
+            Tumia AI ya M-Skana kukagua kama mahindi yako yana dalili za MLN.
+          </p>
+          <a href="scan.html" class="btn btn--primary">
+            <span class="material-icons">camera_alt</span>
+            <span data-sw="Kagua sasa" data-en="Check now">Kagua sasa</span>
+          </a>
+        </div>
+      </div>
+    </main>
+    <!-- Compact footer links. -->
+    <footer class="footer-slim" role="contentinfo">
+      <div class="container footer-slim-inner">
+        <span class="footer-slim-copy"
+          >© 2026 M-Skana. All rights reserved.</span
+        >
+        <div class="footer-slim-links">
+          <a href="/legal/privacy.html" class="footer-slim-link">Privacy</a>
+          <a href="/legal/terms.html" class="footer-slim-link">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: page-specific and shared runtime modules. -->
+    <script src="/assets/js/core/storage.js"></script>
+    <script src="/assets/js/modules/terms-guard.js"></script>
+    <script src="/assets/js/core/events.js"></script>
+    <script src="/assets/js/modules/language.js"></script>
+    <script src="/assets/js/modules/nav.js"></script>
+    <script src="/assets/js/modules/pwa.js"></script>
+    <script src="/assets/js/core/app.js"></script>
+    <script src="/assets/js/pages/guide.js"></script>
+
+    <!-- Mobile bottom navigation. -->
+    <nav class="pwa-bottom-nav" id="pwa-bottom-nav" aria-label="Menyu ya chini">
+      <a href="/index.html" class="pwa-nav-item" data-page="index">
+        <span class="material-icons" aria-hidden="true">home</span>
+        <span class="pwa-nav-label" data-sw="Nyumbani" data-en="Home"
+          >Nyumbani</span
+        >
+      </a>
+      <a href="/scan.html" class="pwa-nav-item" data-page="scan">
+        <span class="material-icons" aria-hidden="true">camera_alt</span>
+        <span class="pwa-nav-label" data-sw="Piga Picha" data-en="Scan"
+          >Piga Picha</span
+        >
+      </a>
+      <a href="/guide.html" class="pwa-nav-item" data-page="guide">
+        <span class="material-icons" aria-hidden="true">menu_book</span>
+        <span class="pwa-nav-label" data-sw="Mwongozo" data-en="Guide"
+          >Mwongozo</span
+        >
+      </a>
+      <a href="/about.html" class="pwa-nav-item" data-page="about">
+        <span class="material-icons" aria-hidden="true">info</span>
+        <span class="pwa-nav-label" data-sw="Kuhusu" data-en="About"
+          >Kuhusu</span
+        >
+      </a>
+    </nav>
+  </body>
+</html>

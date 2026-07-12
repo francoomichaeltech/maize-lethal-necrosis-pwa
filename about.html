@@ -1,0 +1,1611 @@
+<!doctype html>
+<!-- Page purpose: explain the project, the team, and the public contact details. -->
+<html lang="sw" dir="ltr" style="background: #fafaf9">
+  <head>
+    <!-- Head section: metadata, icons, fonts, and shared styles for this page. -->
+    <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href="/assets/fonts/material-icons.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/assets/css/tokens.css" as="style" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="description" content="Kuhusu mradi wa M-Skana na timu yake." />
+    <meta name="theme-color" content="#16A34A" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/assets/images/icons/android/icon-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/icons/pwa/apple-touch-180x180.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="M-Skana" />
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/fonts/material-icons.css" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components/header.css" />
+    <link rel="stylesheet" href="/assets/css/components/nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/footer.css" />
+    <link rel="stylesheet" href="/assets/css/components/pwa-nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/modal.css" />
+    <link rel="stylesheet" href="/assets/css/components/buttons.css" />
+    <link rel="stylesheet" href="/assets/css/pages/history.css" />
+    <title>Kuhusu &middot; M-Skana</title>
+    <style>
+      /* Critical CSS: keep the first paint stable before the full styles load. */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        background: #fafaf9;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: #fafaf9;
+        color: #1c1917;
+      }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #fff;
+        border-bottom: 1px solid #e7e5e4;
+        z-index: 200;
+      }
+      .main-content {
+        padding-top: 64px;
+      }
+      .page-back-btn {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #16a34a;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        margin-bottom: 0.75rem;
+        width: fit-content;
+        padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+        border-radius: 0.375rem;
+        border: 1.5px solid #bbf7d0;
+        background: #f0fdf4;
+      }
+      @media (max-width: 899px) {
+        .page-back-btn {
+          display: inline-flex;
+        }
+      }
+    </style>
+    <noscript
+      ><style>
+        body {
+          visibility: visible !important;
+        }
+      </style></noscript
+    >
+  </head>
+  <body class="page-wrapper">
+    <!-- Body section: page structure, navigation, and main content. -->
+    <a
+      href="#main-content"
+      class="skip-link"
+      data-sw="Ruka kwenda maudhui makuu"
+      data-en="Skip to main content"
+      >Ruka kwenda maudhui makuu</a
+    >
+    <header class="site-header" role="banner" id="site-header">
+      <div class="container header-container">
+        <div class="header-brand">
+          <a
+            href="index.html"
+            class="logo-link"
+            aria-label="M-Skana &middot; Nyumbani"
+          >
+            <img
+              src="/assets/images/icons/android/icon-96x96.png"
+              alt="M-Skana Logo"
+              class="brand-logo"
+              width="32"
+              height="32"
+            />
+            <span class="brand-name">M-Skana</span>
+          </a>
+        </div>
+
+        <nav
+          class="main-nav main-nav--desktop"
+          role="navigation"
+          aria-label="Menyu kuu"
+        >
+          <ul class="nav-list" role="list">
+            <li>
+              <a href="index.html" class="nav-link">
+                <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+              </a>
+            </li>
+            <li>
+              <a href="scan.html" class="nav-link">
+                <span data-sw="Piga Picha" data-en="Scan">Piga Picha</span>
+              </a>
+            </li>
+            <li>
+              <a href="history.html" class="nav-link">
+                <span data-sw="Historia" data-en="History">Historia</span>
+              </a>
+            </li>
+            <li>
+              <a href="history.html" class="nav-link">
+                <span data-sw="Historia" data-en="History">Historia</span>
+              </a>
+            </li>
+            <li>
+              <a href="guide.html" class="nav-link">
+                <span data-sw="Mwongozo" data-en="Guide">Mwongozo</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="nav-link">
+                <span data-sw="Kuhusu" data-en="About">Kuhusu</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-selector" id="lang-selector">
+            <button
+              class="lang-selector-btn"
+              id="lang-selector-btn"
+              aria-label="Chagua lugha"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              type="button"
+            >
+              <span class="material-icons" aria-hidden="true">language</span>
+              <span class="current-language" id="current-lang-label">SW</span>
+              <span class="material-icons chevron-icon" aria-hidden="true"
+                >expand_more</span
+              >
+            </button>
+
+            <div
+              class="lang-dropdown"
+              id="lang-dropdown"
+              hidden
+              role="listbox"
+              aria-label="Chagua lugha"
+            >
+              <button
+                class="lang-option lang-option--active"
+                data-lang="sw"
+                type="button"
+                role="option"
+                aria-selected="true"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect width="300" height="200" fill="#1EB53A" />
+                  <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+                  <path
+                    d="M 0,200 L 300,0"
+                    stroke="#FCD116"
+                    stroke-width="84"
+                  />
+                  <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+                </svg>
+                <span class="lang-name">Kiswahili</span>
+                <span class="material-icons check-icon" aria-hidden="true"
+                  >check</span
+                >
+              </button>
+
+              <button
+                class="lang-option"
+                data-lang="en"
+                type="button"
+                role="option"
+                aria-selected="false"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <clipPath id="flag-clip-desktop">
+                    <path
+                      d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                    />
+                  </clipPath>
+                  <rect width="300" height="200" fill="#012169" />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    stroke="#fff"
+                    stroke-width="40"
+                  />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    clip-path="url(#flag-clip-desktop)"
+                    stroke="#C8102E"
+                    stroke-width="26"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#fff"
+                    stroke-width="66"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#C8102E"
+                    stroke-width="40"
+                  />
+                </svg>
+                <span class="lang-name">English</span>
+                <span
+                  class="material-icons check-icon check-icon--hidden"
+                  aria-hidden="true"
+                  >check</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="mobile-menu-btn"
+            id="mobile-menu-btn"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Fungua menyu"
+            type="button"
+          >
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div
+      class="mobile-nav-backdrop"
+      id="mobile-nav-backdrop"
+      aria-hidden="true"
+    ></div>
+
+    <nav
+      class="mobile-nav"
+      id="mobile-nav"
+      role="navigation"
+      aria-label="Menyu ya simu"
+      aria-hidden="true"
+      inert
+    >
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img
+            src="/assets/images/icons/android/icon-72x72.png"
+            alt="M-Skana Logo"
+            class="mobile-nav-logo"
+            width="28"
+            height="28"
+          />
+          <span class="mobile-nav-brand-name">M-Skana</span>
+        </div>
+        <button
+          class="mobile-nav-close"
+          id="mobile-nav-close"
+          aria-label="Funga menyu"
+          type="button"
+        >
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+      </div>
+
+      <ul class="mobile-nav-list" role="list">
+        <li>
+          <a href="index.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >home</span
+            >
+            <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+          </a>
+        </li>
+        <li>
+          <a href="scan.html" class="mobile-nav-link mobile-nav-link--cta">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >camera_alt</span
+            >
+            <span data-sw="Piga Picha" data-en="Scan">Piga Picha</span>
+          </a>
+        </li>
+        <li>
+          <a href="history.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >history</span
+            >
+            <span data-sw="Historia" data-en="History">Historia</span>
+          </a>
+        </li>
+        <li>
+          <a href="guide.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >menu_book</span
+            >
+            <span data-sw="Mwongozo" data-en="Guide">Mwongozo</span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >info</span
+            >
+            <span data-sw="Kuhusu" data-en="About">Kuhusu</span>
+          </a>
+        </li>
+        <li>
+          <a href="feedback.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >chat_bubble</span
+            >
+            <span data-sw="Toa Maoni" data-en="Feedback">Toa Maoni</span>
+          </a>
+        </li>
+        <li>
+          <a href="support.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >support_agent</span
+            >
+            <span data-sw="Msaada" data-en="Support">Msaada</span>
+          </a>
+        </li>
+        <li>
+          <a href="legal/terms.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >description</span
+            >
+            <span data-sw="Masharti ya Matumizi" data-en="Terms of Use"
+              >Masharti ya Matumizi</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="legal/privacy.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >shield</span
+            >
+            <span data-sw="Sera ya Faragha" data-en="Privacy Policy"
+              >Sera ya Faragha</span
+            >
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-nav-footer">
+        <p
+          class="mobile-nav-footer-label"
+          data-sw="Chagua Lugha"
+          data-en="Select Language"
+        >
+          Chagua Lugha
+        </p>
+        <div class="mobile-nav-language">
+          <button
+            class="mobile-lang-option mobile-lang-option--active"
+            data-lang="sw"
+            type="button"
+          >
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect width="300" height="200" fill="#1EB53A" />
+              <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+              <path d="M 0,200 L 300,0" stroke="#FCD116" stroke-width="84" />
+              <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+            </svg>
+            <span class="mobile-lang-name">Kiswahili</span>
+          </button>
+          <button class="mobile-lang-option" data-lang="en" type="button">
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <clipPath id="flag-clip-mobile">
+                <path
+                  d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                />
+              </clipPath>
+              <rect width="300" height="200" fill="#012169" />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                stroke="#fff"
+                stroke-width="40"
+              />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                clip-path="url(#flag-clip-mobile)"
+                stroke="#C8102E"
+                stroke-width="26"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#fff"
+                stroke-width="66"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#C8102E"
+                stroke-width="40"
+              />
+            </svg>
+            <span class="mobile-lang-name">English</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main
+      id="main-content"
+      class="main-content about-page desktop-page-spacing"
+      role="main"
+    >
+      <!-- Intro: brief description of the project and its purpose. -->
+      <div
+        class="container container--narrow"
+        style="padding-bottom: var(--sp-16)"
+      >
+        <a
+          href="/index.html"
+          class="page-back-btn"
+          data-back-btn
+          data-back-fallback="/index.html"
+          aria-label="Home"
+        >
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+          <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+        </a>
+
+        <div style="margin-bottom: var(--sp-10)">
+          <span
+            style="
+              display: inline-block;
+              background: var(--clr-brand-medium);
+              color: var(--clr-brand);
+              font-size: var(--text-xs);
+              font-weight: var(--fw-semibold);
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              padding: var(--sp-1) var(--sp-3);
+              border-radius: var(--radius-full);
+              margin-bottom: var(--sp-4);
+            "
+            data-sw="Kuhusu M-Skana"
+            data-en="About M-Skana"
+            >Kuhusu M-Skana</span
+          >
+          <h1
+            style="
+              font-family: var(--font-display);
+              font-size: clamp(var(--text-3xl), 5vw, var(--text-4xl));
+              font-weight: var(--fw-extrabold);
+              color: var(--clr-text);
+              letter-spacing: var(--ls-tight);
+              line-height: 1.15;
+              margin-bottom: var(--sp-4);
+            "
+            data-sw="Kuhusu M-Skana"
+            data-en="About M-Skana"
+          >
+            Kuhusu M-Skana
+          </h1>
+          <p
+            style="
+              font-size: var(--text-lg);
+              color: var(--clr-text-secondary);
+              line-height: var(--lh-relaxed);
+              max-width: 560px;
+            "
+            data-sw="M-Skana ni programu ya simu inayotumia akili bandia kusaidia wakulima kugundua dalili za ugonjwa wa MLN mapema. Imeundwa ili iwe rahisi kutumia, ifanye kazi bila mtandao, na iwafae wakulima wadogo wa Tanzania na Afrika Mashariki."
+            data-en="M-Skana is a mobile app that uses artificial intelligence to help farmers detect MLN symptoms early. It is built to be easy to use, work without internet, and fit the needs of smallholder farmers in Tanzania and East Africa."
+          >
+            M-Skana ni programu ya simu inayotumia akili bandia kusaidia
+            wakulima kugundua dalili za ugonjwa wa MLN mapema. Imeundwa ili iwe
+            rahisi kutumia, ifanye kazi bila mtandao, na iwafae wakulima wadogo
+            wa Tanzania na Afrika Mashariki.
+          </p>
+        </div>
+
+        <!-- Mission: explain the problem M-Skana is meant to solve. -->
+        <div
+          style="
+            background: var(--clr-brand-light);
+            border: 1.5px solid var(--clr-primary-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--sp-6);
+            margin-bottom: var(--sp-8);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: var(--sp-3);
+              margin-bottom: var(--sp-4);
+            "
+          >
+            <span
+              class="material-icons"
+              style="color: var(--clr-brand); font-size: 24px"
+              >flag</span
+            >
+            <h2
+              style="
+                font-family: var(--font-display);
+                font-size: var(--text-xl);
+                font-weight: var(--fw-bold);
+                color: var(--clr-brand);
+              "
+              data-sw="Dhamira yetu"
+              data-en="Our Mission"
+            >
+              Dhamira yetu
+            </h2>
+          </div>
+          <p
+            style="
+              color: var(--clr-primary-800);
+              line-height: var(--lh-relaxed);
+            "
+            data-sw="Dhamira yetu ni kuwapa wakulima wadogo teknolojia rahisi, nafuu, na inayopatikana kwa urahisi ili waweze kutambua ugonjwa wa MLN mapema na kuchukua hatua kwa wakati. Tunaamini teknolojia nzuri inapaswa kumsaidia mkulima moja kwa moja shambani, hata pale ambapo intaneti haipatikani."
+            data-en="Our mission is to give smallholder farmers simple, affordable, and accessible technology so they can identify MLN early and take action on time. We believe good technology should support farmers directly in the field, even where internet is not available."
+          >
+            Dhamira yetu ni kuwapa wakulima wadogo teknolojia rahisi, nafuu, na
+            inayopatikana kwa urahisi ili waweze kutambua ugonjwa wa MLN mapema
+            na kuchukua hatua kwa wakati. Tunaamini teknolojia nzuri inapaswa
+            kumsaidia mkulima moja kwa moja shambani, hata pale ambapo intaneti
+            haipatikani.
+          </p>
+        </div>
+
+        <!-- Context: why MLN matters and why early detection is important. -->
+        <h2
+          style="
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: var(--fw-extrabold);
+            color: var(--clr-text);
+            letter-spacing: var(--ls-tight);
+            margin-bottom: var(--sp-4);
+          "
+          data-sw="Kwa nini MLN ni tatizo kubwa"
+          data-en="Why MLN Is a Major Problem"
+        >
+          Kwa nini MLN ni tatizo kubwa
+        </h2>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--sp-4);
+            margin-bottom: var(--sp-10);
+          "
+        >
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 2rem;
+                font-weight: var(--fw-extrabold);
+                color: var(--clr-red-600);
+                margin-bottom: var(--sp-2);
+              "
+            >
+              100%
+            </div>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+              "
+              data-sw="MLN ni ugonjwa hatari wa mahindi unaoweza kusababisha upotevu mkubwa wa mavuno usipogunduliwa mapema."
+              data-en="MLN is a serious maize disease that can cause major yield loss if it is not detected early."
+            >
+              MLN ni ugonjwa hatari wa mahindi unaoweza kusababisha upotevu
+              mkubwa wa mavuno usipogunduliwa mapema.
+            </p>
+          </div>
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 2rem;
+                font-weight: var(--fw-extrabold);
+                color: var(--clr-amber-600);
+                margin-bottom: var(--sp-2);
+              "
+            >
+              2011
+            </div>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+              "
+              data-sw="Ugonjwa huu ulianza kuripotiwa Afrika Mashariki mwaka 2011, kwanza nchini Kenya, na baadaye ukaonekana pia katika nchi nyingine za ukanda huu."
+              data-en="This disease was first reported in East Africa in 2011, starting in Kenya, and later appeared in other countries in the region."
+            >
+              Ugonjwa huu ulianza kuripotiwa Afrika Mashariki mwaka 2011, kwanza
+              nchini Kenya, na baadaye ukaonekana pia katika nchi nyingine za
+              ukanda huu.
+            </p>
+          </div>
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 2rem;
+                font-weight: var(--fw-extrabold);
+                color: var(--clr-brand);
+                margin-bottom: var(--sp-2);
+              "
+            >
+              Dalili
+            </div>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+              "
+              data-sw="MLN ni vigumu kugunduliwa mapema kwa macho tu, kwa sababu dalili zake zinaweza kufanana na matatizo mengine ya mahindi. Pia husambazwa kwa vipopo na wadudu wengine kutoka mmea kwa mmea na shamba kwa shamba."
+              data-en="MLN is difficult to detect early by visual check alone because its symptoms can look like other maize problems. It is also spread by thrips and other insects from plant to plant and from one field to another."
+            >
+              MLN ni vigumu kugunduliwa mapema kwa macho tu, kwa sababu dalili
+              zake zinaweza kufanana na matatizo mengine ya mahindi. Pia
+              husambazwa kwa vipopo na wadudu wengine kutoka mmea kwa mmea na
+              shamba kwa shamba.
+            </p>
+          </div>
+        </div>
+
+        <!-- Workflow: how a user moves through the app from photo to result. -->
+        <h2
+          style="
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: var(--fw-extrabold);
+            color: var(--clr-text);
+            letter-spacing: var(--ls-tight);
+            margin-bottom: var(--sp-6);
+          "
+          data-sw="Jinsi M-Skana inavyofanya kazi"
+          data-en="How M-Skana Works"
+        >
+          Jinsi M-Skana inavyofanya kazi
+        </h2>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-4);
+            margin-bottom: var(--sp-10);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              gap: var(--sp-4);
+              align-items: flex-start;
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: var(--radius-full);
+                background: var(--clr-brand);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                flex-shrink: 0;
+              "
+            >
+              <span
+                style="
+                  font-family: var(--font-display);
+                  font-weight: var(--fw-bold);
+                "
+                >1</span
+              >
+            </div>
+            <div>
+              <h3
+                style="
+                  font-family: var(--font-display);
+                  font-weight: var(--fw-semibold);
+                  margin-bottom: var(--sp-1);
+                "
+                data-sw="Piga Picha"
+                data-en="Take a Photo"
+              >
+                Piga Picha
+              </h3>
+              <p
+                style="
+                  font-size: var(--text-sm);
+                  color: var(--clr-text-secondary);
+                "
+                data-sw="Piga picha ya jani la mahindi kwa uwazi, ukihakikisha linaonekana vizuri ndani ya fremu. Unaweza kutumia kamera ya simu au kuchagua picha kutoka kwenye simu yako."
+                data-en="Take a clear photo of a maize leaf and make sure it is visible inside the frame. You can use your phone camera or choose a photo from your phone."
+              >
+                Piga picha ya jani la mahindi kwa uwazi, ukihakikisha
+                linaonekana vizuri ndani ya fremu.
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: var(--sp-4);
+              align-items: flex-start;
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: var(--radius-full);
+                background: var(--clr-brand);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                flex-shrink: 0;
+              "
+            >
+              <span
+                style="
+                  font-family: var(--font-display);
+                  font-weight: var(--fw-bold);
+                "
+                >2</span
+              >
+            </div>
+            <div>
+              <h3
+                style="
+                  font-family: var(--font-display);
+                  font-weight: var(--fw-semibold);
+                  margin-bottom: var(--sp-1);
+                "
+                data-sw="Mfumo huchambua picha"
+                data-en="The System Analyzes the Image"
+              >
+                Mfumo huchambua picha
+              </h3>
+              <p
+                style="
+                  font-size: var(--text-sm);
+                  color: var(--clr-text-secondary);
+                "
+                data-sw="Mfumo huchunguza kwanza kama picha ni ya jani la mahindi. Baada ya hapo, huchambua kama jani lina dalili za MLN au dalili za ugonjwa mwingine."
+                data-en="The system first checks whether the image is a maize leaf. After that, it analyzes whether the leaf shows MLN symptoms or signs of another disease."
+              >
+                Mfumo huchunguza kwanza kama picha ni ya jani la mahindi. Baada
+                ya hapo, huchambua kama jani lina dalili za MLN au dalili za
+                ugonjwa mwingine.
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: var(--sp-4);
+              align-items: flex-start;
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: var(--radius-full);
+                background: var(--clr-brand);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                flex-shrink: 0;
+              "
+            >
+              <span
+                style="
+                  font-family: var(--font-display);
+                  font-weight: var(--fw-bold);
+                "
+                >3</span
+              >
+            </div>
+            <div>
+              <h3
+                style="
+                  font-family: var(--font-display);
+                  font-weight: var(--fw-semibold);
+                  margin-bottom: var(--sp-1);
+                "
+                data-sw="Pata majibu"
+                data-en="Get Results"
+              >
+                Pata majibu
+              </h3>
+              <p
+                style="
+                  font-size: var(--text-sm);
+                  color: var(--clr-text-secondary);
+                "
+                data-sw="Baada ya uchambuzi, unapokea majibu kwa lugha rahisi. Majibu yanaweza kuonyesha kuwa mmea ni mzima, una dalili za MLN, au una dalili za ugonjwa mwingine."
+                data-en="After analysis, you receive results in simple language. The result can show that the plant is healthy, has MLN signs, or has signs of another disease."
+              >
+                Baada ya uchambuzi, unapokea majibu kwa lugha rahisi. Majibu
+                yanaweza kuonyesha kuwa mmea ni mzima, una dalili za MLN, au una
+                dalili za ugonjwa mwingine.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technology: core tools and platform choices used in the app. -->
+        <h2
+          style="
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: var(--fw-bold);
+            color: var(--clr-text);
+            margin-bottom: var(--sp-5);
+          "
+          data-sw="Teknolojia iliyotumika"
+          data-en="Technology Used"
+        >
+          Teknolojia iliyotumika
+        </h2>
+        <p
+          style="
+            font-size: var(--text-sm);
+            color: var(--clr-text-secondary);
+            line-height: var(--lh-relaxed);
+            margin-bottom: var(--sp-5);
+          "
+          data-sw="M-Skana imetengenezwa kwa kutumia teknolojia za kisasa za AI na web app ili iweze kufanya kazi kwenye simu nyingi kwa urahisi. Mfumo huu umeundwa kwa kuzingatia matumizi ya wakulima waliopo maeneo yenye mtandao mdogo au usiopatikana kabisa."
+          data-en="M-Skana is built with modern AI and web app technologies so it can run easily on many smartphones. The system is designed for farmers in areas with weak or no internet connection."
+        >
+          M-Skana imetengenezwa kwa kutumia teknolojia za kisasa za AI na web
+          app ili iweze kufanya kazi kwenye simu nyingi kwa urahisi. Mfumo huu
+          umeundwa kwa kuzingatia matumizi ya wakulima waliopo maeneo yenye
+          mtandao mdogo au usiopatikana kabisa.
+        </p>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--sp-4);
+            margin-bottom: var(--sp-10);
+          "
+        >
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: var(--sp-3);
+                margin-bottom: var(--sp-2);
+              "
+            >
+              <span class="material-icons" style="color: var(--clr-brand)"
+                >psychology</span
+              ><strong>MobileNetV2 na TensorFlow.js</strong>
+            </div>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+              "
+              data-sw="MobileNetV2 na TensorFlow.js kwa uchambuzi wa picha."
+              data-en="MobileNetV2 and TensorFlow.js for image analysis."
+            >
+              MobileNetV2 na TensorFlow.js kwa uchambuzi wa picha.
+            </p>
+          </div>
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: var(--sp-3);
+                margin-bottom: var(--sp-2);
+              "
+            >
+              <span class="material-icons" style="color: var(--clr-brand)"
+                >install_mobile</span
+              ><strong>Progressive Web App</strong>
+            </div>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+              "
+              data-sw="Progressive Web App kwa matumizi rahisi kwenye simu."
+              data-en="Progressive Web App for easy use on smartphones."
+            >
+              Progressive Web App kwa matumizi rahisi kwenye simu.
+            </p>
+          </div>
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-5);
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: var(--sp-3);
+                margin-bottom: var(--sp-2);
+              "
+            >
+              <span class="material-icons" style="color: var(--clr-brand)"
+                >wifi_off</span
+              ><strong>Always Ready</strong>
+            </div>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+              "
+              data-sw="Mfumo wa kwanza wa kuhifadhi ili programu iendelee kufanya kazi bila mtandao."
+              data-en="Cached-first system so the app continues to work without internet."
+            >
+              Mfumo wa kwanza wa kuhifadhi ili programu iendelee kufanya kazi
+              bila mtandao.
+            </p>
+          </div>
+        </div>
+
+        <!-- Team: the project contributors and their responsibilities. -->
+        <h2
+          style="
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: var(--fw-extrabold);
+            color: var(--clr-text);
+            letter-spacing: var(--ls-tight);
+            margin-bottom: var(--sp-6);
+          "
+          data-sw="Timu ya mradi"
+          data-en="Project Team"
+        >
+          Timu ya mradi
+        </h2>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--sp-5);
+            margin-bottom: var(--sp-10);
+          "
+        >
+          <!-- Michael: AI and backend lead. -->
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-2xl);
+              padding: var(--sp-6);
+            "
+          >
+            <div
+              style="
+                width: 64px;
+                height: 64px;
+                border-radius: var(--radius-full);
+                background: var(--clr-brand);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-family: var(--font-display);
+                font-size: var(--text-2xl);
+                font-weight: var(--fw-bold);
+                margin-bottom: var(--sp-4);
+              "
+            >
+              MF
+            </div>
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: var(--text-lg);
+                font-weight: var(--fw-bold);
+                color: var(--clr-text);
+                margin-bottom: var(--sp-1);
+              "
+            >
+              Michael Francoo
+            </h3>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-brand);
+                font-weight: var(--fw-medium);
+                margin-bottom: var(--sp-3);
+              "
+              data-sw="Msanidi Mkuu wa AI na Mifumo ya Backend"
+              data-en="Lead AI and Backend Systems Developer"
+            >
+              Msanidi Mkuu wa AI na Mifumo ya Backend
+            </p>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+                line-height: var(--lh-relaxed);
+                margin-bottom: var(--sp-4);
+              "
+              data-sw="Anahusika na mafunzo ya modeli za AI, mifumo ya backend, na utekelezaji wa mfumo wa uchambuzi ndani ya programu."
+              data-en="Responsible for AI model training, backend systems, and implementation of the analysis system inside the app."
+            >
+              Anahusika na mafunzo ya modeli za AI, mifumo ya backend, na
+              utekelezaji wa mfumo wa uchambuzi ndani ya programu.
+            </p>
+            <a
+              href="https://github.com/michaelfrancoodev"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: var(--sp-2);
+                font-size: var(--text-sm);
+                color: var(--clr-brand);
+                text-decoration: none;
+                font-weight: var(--fw-medium);
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12a12 12 0 0 0 8.2 11.39c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.42-4.04-1.42-.55-1.38-1.33-1.75-1.33-1.75-1.09-.75.08-.74.08-.74 1.2.08 1.84 1.24 1.84 1.24 1.08 1.84 2.82 1.31 3.51 1 .11-.79.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.48 11.48 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              github.com/michaelfrancoodev
+            </a>
+          </div>
+          <!-- Rehema: app design and user experience. -->
+          <div
+            style="
+              background: var(--clr-surface);
+              border: 1px solid var(--clr-border);
+              border-radius: var(--radius-2xl);
+              padding: var(--sp-6);
+            "
+          >
+            <div
+              style="
+                width: 64px;
+                height: 64px;
+                border-radius: var(--radius-full);
+                background: var(--clr-primary-400);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-family: var(--font-display);
+                font-size: var(--text-2xl);
+                font-weight: var(--fw-bold);
+                margin-bottom: var(--sp-4);
+              "
+            >
+              RT
+            </div>
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: var(--text-lg);
+                font-weight: var(--fw-bold);
+                color: var(--clr-text);
+                margin-bottom: var(--sp-1);
+              "
+            >
+              Rehema Thomas
+            </h3>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-brand);
+                font-weight: var(--fw-medium);
+                margin-bottom: var(--sp-3);
+              "
+              data-sw="Muundo wa Programu na Uzoefu wa Mtumiaji"
+              data-en="App Design and User Experience"
+            >
+              Muundo wa Programu na Uzoefu wa Mtumiaji
+            </p>
+            <p
+              style="
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+                line-height: var(--lh-relaxed);
+                margin-bottom: var(--sp-4);
+              "
+              data-sw="Anahusika na muundo wa programu, majaribio ya matumizi, na kubuni kiolesura rahisi kinachofaa kwa wakulima."
+              data-en="Responsible for app design, usability testing, and creating a simple interface that works well for farmers."
+            >
+              Anahusika na muundo wa programu, majaribio ya matumizi, na kubuni
+              kiolesura rahisi kinachofaa kwa wakulima.
+            </p>
+            <a
+              href="https://github.com/rehemathomas"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: var(--sp-2);
+                font-size: var(--text-sm);
+                color: var(--clr-brand);
+                text-decoration: none;
+                font-weight: var(--fw-medium);
+              "
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12a12 12 0 0 0 8.2 11.39c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.42-4.04-1.42-.55-1.38-1.33-1.75-1.33-1.75-1.09-.75.08-.74.08-.74 1.2.08 1.84 1.24 1.84 1.24 1.08 1.84 2.82 1.31 3.51 1 .11-.79.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.48 11.48 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              github.com/rehemathomas
+            </a>
+          </div>
+        </div>
+
+        <!-- Supervisor: academic oversight for the final-year project. -->
+        <div
+          style="
+            background: var(--clr-surface);
+            border: 1.5px solid var(--clr-brand);
+            border-radius: var(--radius-2xl);
+            padding: var(--sp-6);
+          "
+        >
+          <div
+            style="
+              display: inline-block;
+              background: var(--clr-brand-medium);
+              color: var(--clr-brand);
+              font-size: var(--text-xs);
+              font-weight: var(--fw-semibold);
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              padding: var(--sp-1) var(--sp-3);
+              border-radius: var(--radius-full);
+              margin-bottom: var(--sp-4);
+            "
+            data-sw="Msimamizi wa Mradi"
+            data-en="Project Supervisor"
+          >
+            Msimamizi wa Mradi
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: var(--sp-4);
+              margin-bottom: var(--sp-4);
+            "
+          >
+            <div
+              style="
+                width: 64px;
+                height: 64px;
+                border-radius: var(--radius-full);
+                background: var(--clr-brand);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-family: var(--font-display);
+                font-size: var(--text-xl);
+                font-weight: var(--fw-bold);
+                flex-shrink: 0;
+              "
+            >
+              NS
+            </div>
+            <div>
+              <h3
+                style="
+                  font-family: var(--font-display);
+                  font-size: var(--text-lg);
+                  font-weight: var(--fw-bold);
+                  color: var(--clr-text);
+                  margin-bottom: var(--sp-1);
+                "
+              >
+                Mr. Nicodemus Sanga
+              </h3>
+              <p
+                style="
+                  font-size: var(--text-sm);
+                  color: var(--clr-brand);
+                  font-weight: var(--fw-medium);
+                "
+                data-sw="Msimamizi wa mradi"
+                data-en="Project Supervisor"
+              >
+                Msimamizi wa mradi
+              </p>
+            </div>
+          </div>
+          <p
+            style="
+              font-size: var(--text-sm);
+              color: var(--clr-text-secondary);
+              line-height: var(--lh-relaxed);
+            "
+            data-sw="Msimamizi wa mradi kutoka Idara ya Mifumo ya Habari na Teknolojia, Ndaki ya TEHAMA, Chuo Kikuu cha Sayansi na Teknolojia Mbeya."
+            data-en="Project supervisor from the Department of Information Systems and Technology, College of ICT, Mbeya University of Science and Technology."
+          >
+            Msimamizi wa mradi kutoka Idara ya Mifumo ya Habari na Teknolojia,
+            Ndaki ya TEHAMA, Chuo Kikuu cha Sayansi na Teknolojia Mbeya.
+          </p>
+          <a
+            href="mailto:sangan896@gmail.com"
+            target="_blank"
+            rel="noopener"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: var(--sp-2);
+              font-size: var(--text-sm);
+              color: var(--clr-brand);
+              text-decoration: none;
+              font-weight: var(--fw-medium);
+            "
+          >
+            <span class="material-icons" style="font-size: 16px">mail</span>
+            sangan896@gmail.com
+          </a>
+        </div>
+
+        <!-- Institution: where the project was developed. -->
+        <div
+          style="
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-2xl);
+            padding: var(--sp-6);
+            margin-bottom: var(--sp-8);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: var(--sp-3);
+              margin-bottom: var(--sp-4);
+            "
+          >
+            <span class="material-icons" style="color: var(--clr-brand)"
+              >school</span
+            >
+            <h2
+              style="
+                font-family: var(--font-display);
+                font-size: var(--text-lg);
+                font-weight: var(--fw-bold);
+                color: var(--clr-text);
+              "
+              data-sw="Taasisi"
+              data-en="Institution"
+            >
+              Taasisi
+            </h2>
+          </div>
+
+          <p
+            style="
+              font-size: var(--text-sm);
+              color: var(--clr-text-secondary);
+              line-height: var(--lh-relaxed);
+              margin-bottom: var(--sp-4);
+            "
+            data-sw="Mradi wa M-Skana umetengenezwa kama sehemu ya mradi wa mwaka wa mwisho katika Chuo Kikuu cha Sayansi na Teknolojia Mbeya. Umetoka ndani ya Idara ya Mifumo ya Habari na Teknolojia, Ndaki ya TEHAMA."
+            data-en="M-Skana was developed as a final year project at Mbeya University of Science and Technology within the Department of Information Systems and Technology, College of ICT."
+          >
+            Mradi wa M-Skana umetengenezwa kama sehemu ya mradi wa mwaka wa
+            mwisho katika Chuo Kikuu cha Sayansi na Teknolojia Mbeya. Umetoka
+            ndani ya Idara ya Mifumo ya Habari na Teknolojia, Ndaki ya TEHAMA.
+          </p>
+
+          <p
+            style="
+              font-size: var(--text-sm);
+              font-weight: var(--fw-semibold);
+              color: var(--clr-text);
+              margin-bottom: var(--sp-1);
+            "
+          >
+            Mbeya University of Science and Technology (MUST)
+          </p>
+          <p
+            style="
+              font-size: var(--text-sm);
+              color: var(--clr-text-secondary);
+              margin-bottom: var(--sp-1);
+            "
+          >
+            College of ICT (CoICT)
+          </p>
+          <p
+            style="
+              font-size: var(--text-sm);
+              color: var(--clr-text-secondary);
+              margin-bottom: var(--sp-4);
+            "
+          >
+            Department of Information Systems and Technology
+          </p>
+          <p
+            style="
+              font-size: var(--text-sm);
+              color: var(--clr-text-secondary);
+              margin-bottom: var(--sp-2);
+            "
+          >
+            Mbeya, Tanzania
+          </p>
+
+          <div
+            style="
+              height: 1px;
+              background: var(--clr-border);
+              margin: var(--sp-4) 0;
+            "
+          ></div>
+
+          <p
+            style="
+              font-size: var(--text-sm);
+              color: var(--clr-text-secondary);
+              line-height: var(--lh-relaxed);
+            "
+            data-sw="M-Skana ni mradi wa mwaka wa mwisho ulioandaliwa katika Idara ya Mifumo ya Habari na Teknolojia, Ndaki ya TEHAMA, Chuo Kikuu cha Sayansi na Teknolojia Mbeya."
+            data-en="M-Skana is a final year project developed in the Department of Information Systems and Technology, College of ICT, Mbeya University of Science and Technology."
+          >
+            M-Skana ni mradi wa mwaka wa mwisho ulioandaliwa katika Idara ya
+            Mifumo ya Habari na Teknolojia, Ndaki ya TEHAMA, Chuo Kikuu cha
+            Sayansi na Teknolojia Mbeya.
+          </p>
+        </div>
+
+        <!-- Contact: public email and project links. -->
+        <div
+          style="
+            background: var(--clr-brand-light);
+            border: 1.5px solid var(--clr-primary-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--sp-6);
+          "
+        >
+          <h2
+            style="
+              font-family: var(--font-display);
+              font-size: var(--text-lg);
+              font-weight: var(--fw-bold);
+              color: var(--clr-brand);
+              margin-bottom: var(--sp-4);
+            "
+            data-sw="Wasiliana Nasi"
+            data-en="Contact Us"
+          >
+            Wasiliana Nasi
+          </h2>
+          <div style="display: flex; flex-direction: column; gap: var(--sp-3)">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: var(--sp-3);
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+              "
+            >
+              <span
+                class="material-icons"
+                style="color: var(--clr-brand); font-size: 18px"
+                >support_agent</span
+              >
+              <span
+                data-sw="Msaada:"
+                data-en="Support:"
+                style="font-weight: var(--fw-semibold)"
+              >
+                Msaada:
+              </span>
+
+              <a
+                href="/support.html"
+                style="
+                  color: var(--clr-brand);
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                "
+                data-sw="Wasiliana Nasi"
+                data-en="Contact Us"
+              >
+                Wasiliana Nasi
+              </a>
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: var(--sp-3);
+                font-size: var(--text-sm);
+                color: var(--clr-text-secondary);
+              "
+            >
+              <span
+                class="material-icons"
+                style="color: var(--clr-brand); font-size: 18px"
+                >new_releases</span
+              >
+              <span
+                data-sw="Toleo la Programu: 1.0.0"
+                data-en="App Version: 1.0.0"
+                >Toleo la Programu: 1.0.0</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer: simple page footer and legal links. -->
+    <footer class="footer-slim" role="contentinfo">
+      <div class="container footer-slim-inner">
+        <span class="footer-slim-copy"
+          >© 2026 M-Skana. All rights reserved.</span
+        >
+        <div class="footer-slim-links">
+          <a href="/legal/privacy.html" class="footer-slim-link">Privacy</a>
+          <a href="/legal/terms.html" class="footer-slim-link">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: shared app modules and the About page bootstrap. -->
+    <script src="/assets/js/core/storage.js"></script>
+    <script src="/assets/js/modules/terms-guard.js"></script>
+    <script src="/assets/js/core/events.js"></script>
+    <script src="/assets/js/modules/language.js"></script>
+    <script src="/assets/js/modules/nav.js"></script>
+    <script src="/assets/js/modules/pwa.js"></script>
+    <script src="/assets/js/core/app.js"></script>
+    <script src="/assets/js/pages/about.js"></script>
+
+    <nav class="pwa-bottom-nav" id="pwa-bottom-nav" aria-label="Menyu ya chini">
+      <a href="/index.html" class="pwa-nav-item" data-page="index">
+        <span class="material-icons" aria-hidden="true">home</span>
+        <span class="pwa-nav-label" data-sw="Nyumbani" data-en="Home"
+          >Nyumbani</span
+        >
+      </a>
+      <a href="/scan.html" class="pwa-nav-item" data-page="scan">
+        <span class="material-icons" aria-hidden="true">camera_alt</span>
+        <span class="pwa-nav-label" data-sw="Piga Picha" data-en="Scan"
+          >Piga Picha</span
+        >
+      </a>
+      <a href="/guide.html" class="pwa-nav-item" data-page="guide">
+        <span class="material-icons" aria-hidden="true">menu_book</span>
+        <span class="pwa-nav-label" data-sw="Mwongozo" data-en="Guide"
+          >Mwongozo</span
+        >
+      </a>
+      <a href="/about.html" class="pwa-nav-item" data-page="about">
+        <span class="material-icons" aria-hidden="true">info</span>
+        <span class="pwa-nav-label" data-sw="Kuhusu" data-en="About"
+          >Kuhusu</span
+        >
+      </a>
+    </nav>
+  </body>
+</html>

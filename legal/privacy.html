@@ -1,0 +1,753 @@
+<!doctype html>
+<!-- legal/privacy.html - Privacy policy details for storage, processing, and user rights. -->
+<html lang="sw" dir="ltr" style="background: #fafaf9">
+  <head>
+    <!-- Head: Metadata, icons, preload hints, and stylesheet resources. -->
+    <meta charset="UTF-8" />
+    <link
+      rel="preload"
+      href="/assets/fonts/material-icons.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/assets/css/tokens.css" as="style" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#16A34A" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/assets/images/icons/android/icon-192x192.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/images/icons/pwa/apple-touch-180x180.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/fonts/material-icons.css" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/layout.css" />
+    <link rel="stylesheet" href="/assets/css/components/header.css" />
+    <link rel="stylesheet" href="/assets/css/components/nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/footer.css" />
+    <link rel="stylesheet" href="/assets/css/components/pwa-nav.css" />
+    <link rel="stylesheet" href="/assets/css/components/buttons.css" />
+    <link rel="stylesheet" href="/assets/css/pages/history.css" />
+    <title>Sera ya Faragha &middot; M-Skana</title>
+    <style>
+      /* Critical inline styles to prevent FOUC before CSS loads. */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        background: #fafaf9;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        background: #fafaf9;
+        color: #1c1917;
+      }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #fff;
+        border-bottom: 1px solid #e7e5e4;
+        z-index: 200;
+      }
+      .main-content {
+        padding-top: 64px;
+      }
+      .page-back-btn {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #16a34a;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        margin-bottom: 0.75rem;
+        width: fit-content;
+        padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+        border-radius: 0.375rem;
+        border: 1.5px solid #bbf7d0;
+        background: #f0fdf4;
+      }
+      @media (max-width: 899px) {
+        .page-back-btn {
+          display: inline-flex;
+        }
+      }
+    </style>
+    <noscript
+      ><style>
+        body {
+          visibility: visible !important;
+        }
+      </style></noscript
+    >
+  </head>
+  <body class="page-wrapper">
+    <!-- Body: Page structure, UI sections, and user-facing content. -->
+    <a href="#main-content" class="skip-link">Ruka kwenda maudhui makuu</a>
+
+    <!-- Top site header and desktop navigation. -->
+    <header class="site-header" role="banner" id="site-header">
+      <div class="container header-container">
+        <div class="header-brand">
+          <a
+            href="/index.html"
+            class="logo-link"
+            aria-label="M-Skana &middot; Nyumbani"
+          >
+            <img
+              src="/assets/images/icons/android/icon-96x96.png"
+              alt="M-Skana Logo"
+              class="brand-logo"
+              width="32"
+              height="32"
+            />
+            <span class="brand-name">M-Skana</span>
+          </a>
+        </div>
+
+        <nav
+          class="main-nav main-nav--desktop"
+          role="navigation"
+          aria-label="Menyu kuu"
+        >
+          <ul class="nav-list" role="list">
+            <li>
+              <a href="index.html" class="nav-link"
+                ><span data-sw="Nyumbani" data-en="Home">Nyumbani</span></a
+              >
+            </li>
+            <li>
+              <a href="scan.html" class="nav-link"
+                ><span data-sw="Piga Picha" data-en="Scan">Piga Picha</span></a
+              >
+            </li>
+            <li>
+              <a href="history.html" class="nav-link"
+                ><span data-sw="Historia" data-en="History">Historia</span></a
+              >
+            </li>
+            <li>
+              <a href="guide.html" class="nav-link"
+                ><span data-sw="Mwongozo" data-en="Guide">Mwongozo</span></a
+              >
+            </li>
+            <li>
+              <a href="about.html" class="nav-link"
+                ><span data-sw="Kuhusu" data-en="About">Kuhusu</span></a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-selector" id="lang-selector">
+            <button
+              class="lang-selector-btn"
+              id="lang-selector-btn"
+              aria-label="Chagua lugha"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              type="button"
+            >
+              <span class="material-icons" aria-hidden="true">language</span>
+              <span class="current-language" id="current-lang-label">SW</span>
+              <span class="material-icons chevron-icon" aria-hidden="true"
+                >expand_more</span
+              >
+            </button>
+
+            <div
+              class="lang-dropdown"
+              id="lang-dropdown"
+              hidden
+              role="listbox"
+              aria-label="Chagua lugha"
+            >
+              <button
+                class="lang-option lang-option--active"
+                data-lang="sw"
+                type="button"
+                role="option"
+                aria-selected="true"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <rect width="300" height="200" fill="#1EB53A" />
+                  <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+                  <path
+                    d="M 0,200 L 300,0"
+                    stroke="#FCD116"
+                    stroke-width="84"
+                  />
+                  <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+                </svg>
+                <span class="lang-name">Kiswahili</span>
+                <span class="material-icons check-icon" aria-hidden="true"
+                  >check</span
+                >
+              </button>
+
+              <button
+                class="lang-option"
+                data-lang="en"
+                type="button"
+                role="option"
+                aria-selected="false"
+              >
+                <svg
+                  class="flag-icon"
+                  viewBox="0 0 300 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <clipPath id="flag-clip-desktop">
+                    <path
+                      d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                    />
+                  </clipPath>
+                  <rect width="300" height="200" fill="#012169" />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    stroke="#fff"
+                    stroke-width="40"
+                  />
+                  <path
+                    d="M0,0 L300,200 M300,0 L0,200"
+                    clip-path="url(#flag-clip-desktop)"
+                    stroke="#C8102E"
+                    stroke-width="26"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#fff"
+                    stroke-width="66"
+                  />
+                  <path
+                    d="M150,0 v200 M0,100 h300"
+                    stroke="#C8102E"
+                    stroke-width="40"
+                  />
+                </svg>
+                <span class="lang-name">English</span>
+                <span
+                  class="material-icons check-icon check-icon--hidden"
+                  aria-hidden="true"
+                  >check</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="mobile-menu-btn"
+            id="mobile-menu-btn"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Fungua menyu"
+            type="button"
+          >
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Mobile navigation drawer and backdrop. -->
+    <div
+      class="mobile-nav-backdrop"
+      id="mobile-nav-backdrop"
+      aria-hidden="true"
+    ></div>
+
+    <nav
+      class="mobile-nav"
+      id="mobile-nav"
+      role="navigation"
+      aria-label="Menyu ya simu"
+      aria-hidden="true"
+      inert
+    >
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <img
+            src="/assets/images/icons/android/icon-72x72.png"
+            alt="M-Skana Logo"
+            class="mobile-nav-logo"
+            width="28"
+            height="28"
+          />
+          <span class="mobile-nav-brand-name">M-Skana</span>
+        </div>
+        <button
+          class="mobile-nav-close"
+          id="mobile-nav-close"
+          aria-label="Funga menyu"
+          type="button"
+        >
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+      </div>
+
+      <ul class="mobile-nav-list" role="list">
+        <li>
+          <a href="index.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >home</span
+            >
+            <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+          </a>
+        </li>
+        <li>
+          <a href="scan.html" class="mobile-nav-link mobile-nav-link--cta">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >camera_alt</span
+            >
+            <span data-sw="Piga Picha" data-en="Scan">Piga Picha</span>
+          </a>
+        </li>
+        <li>
+          <a href="history.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >history</span
+            >
+            <span data-sw="Historia" data-en="History">Historia</span>
+          </a>
+        </li>
+        <li>
+          <a href="guide.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >menu_book</span
+            >
+            <span data-sw="Mwongozo" data-en="Guide">Mwongozo</span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >info</span
+            >
+            <span data-sw="Kuhusu" data-en="About">Kuhusu</span>
+          </a>
+        </li>
+        <li>
+          <a href="feedback.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >chat_bubble</span
+            >
+            <span data-sw="Toa Maoni" data-en="Feedback">Toa Maoni</span>
+          </a>
+        </li>
+        <li>
+          <a href="support.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >support_agent</span
+            >
+            <span data-sw="Msaada" data-en="Support">Msaada</span>
+          </a>
+        </li>
+        <li>
+          <a href="legal/terms.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >description</span
+            >
+            <span data-sw="Masharti ya Matumizi" data-en="Terms of Use"
+              >Masharti ya Matumizi</span
+            >
+          </a>
+        </li>
+        <li>
+          <a href="legal/privacy.html" class="mobile-nav-link">
+            <span class="material-icons mobile-nav-icon" aria-hidden="true"
+              >shield</span
+            >
+            <span data-sw="Sera ya Faragha" data-en="Privacy Policy"
+              >Sera ya Faragha</span
+            >
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-nav-footer">
+        <p
+          class="mobile-nav-footer-label"
+          data-sw="Chagua Lugha"
+          data-en="Select Language"
+        >
+          Chagua Lugha
+        </p>
+        <div class="mobile-nav-language">
+          <button
+            class="mobile-lang-option mobile-lang-option--active"
+            data-lang="sw"
+            type="button"
+          >
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect width="300" height="200" fill="#1EB53A" />
+              <path d="M 0,200 L 300,200 L 300,0 Z" fill="#00A3DD" />
+              <path d="M 0,200 L 300,0" stroke="#FCD116" stroke-width="84" />
+              <path d="M 0,200 L 300,0" stroke="#000" stroke-width="52" />
+            </svg>
+            <span class="mobile-lang-name">Kiswahili</span>
+          </button>
+          <button class="mobile-lang-option" data-lang="en" type="button">
+            <svg
+              class="flag-icon"
+              viewBox="0 0 300 200"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <clipPath id="flag-clip-mobile">
+                <path
+                  d="M150,100 h150 v100 z v100 h-150 z h-150 v-100 z v-100 h150 z"
+                />
+              </clipPath>
+              <rect width="300" height="200" fill="#012169" />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                stroke="#fff"
+                stroke-width="40"
+              />
+              <path
+                d="M0,0 L300,200 M300,0 L0,200"
+                clip-path="url(#flag-clip-mobile)"
+                stroke="#C8102E"
+                stroke-width="26"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#fff"
+                stroke-width="66"
+              />
+              <path
+                d="M150,0 v200 M0,100 h300"
+                stroke="#C8102E"
+                stroke-width="40"
+              />
+            </svg>
+            <span class="mobile-lang-name">English</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main legal content area. -->
+    <main
+      id="main-content"
+      class="main-content legal-page desktop-page-spacing"
+      role="main"
+    >
+      <div
+        class="container container--narrow"
+        style="padding-bottom: var(--sp-16); max-width: 680px"
+      >
+        <!-- Mobile back button to home. -->
+        <a
+          href="/index.html"
+          class="page-back-btn"
+          data-back-btn
+          data-back-fallback="/index.html"
+          aria-label="Home"
+        >
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+          <span data-sw="Nyumbani" data-en="Home">Nyumbani</span>
+        </a>
+        <!-- Privacy policy document body. -->
+        <div class="legal-content">
+          <h1
+            style="
+              font-family: var(--font-display);
+              font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+              font-weight: var(--fw-extrabold);
+              color: var(--clr-text);
+              letter-spacing: var(--ls-tight);
+              margin-bottom: var(--sp-2);
+            "
+            data-sw="Sera ya Faragha"
+            data-en="Privacy Policy"
+          >
+            Sera ya Faragha
+          </h1>
+          <p
+            style="
+              color: var(--clr-text-muted);
+              margin-bottom: var(--sp-8);
+              font-size: var(--text-sm);
+            "
+            data-sw="Ilisasishwa mara ya mwisho: Januari 2026"
+            data-en="Last updated: January 2026"
+          >
+            Ilisasishwa mara ya mwisho: Januari 2026
+          </p>
+
+          <div
+            style="
+              background: var(--clr-brand-light);
+              border: 1.5px solid var(--clr-primary-200);
+              border-radius: var(--radius-xl);
+              padding: var(--sp-4);
+              margin-bottom: var(--sp-8);
+              display: flex;
+              gap: var(--sp-3);
+            "
+          >
+            <span
+              class="material-icons"
+              style="color: var(--clr-brand); flex-shrink: 0"
+              >shield</span
+            >
+            <p
+              style="font-size: var(--text-sm); color: var(--clr-primary-800)"
+              data-sw="Faragha yako ni muhimu kwetu. M-Skana imeundwa kulinda taarifa zako kwa kuhakikisha kuwa data yako inabaki kwenye simu yako na haitumwi kwenye seva zetu wala kwa watu wengine."
+              data-en="Your privacy is important to us. M-Skana is designed to protect your information by making sure your data stays on your phone and is not sent to our servers or other parties."
+            >
+              Faragha yako ni muhimu kwetu. M-Skana imeundwa kulinda taarifa
+              zako kwa kuhakikisha kuwa data yako inabaki kwenye simu yako na
+              haitumwi kwenye seva zetu wala kwa watu wengine.
+            </p>
+          </div>
+
+          <h2 data-sw="1. Data Tunayokusanya" data-en="1. Data We Collect">
+            1. Data Tunayokusanya
+          </h2>
+          <p
+            data-sw="M-Skana haikusanyi data yako ya kibinafsi. Programu hii haina:"
+            data-en="M-Skana does not collect your personal data. This app has no:"
+          >
+            M-Skana haikusanyi data yako ya kibinafsi. Programu hii haina:
+          </p>
+          <ul>
+            <li
+              data-sw="Akaunti ya mtumiaji, hivyo hakuna usajili unaohitajika"
+              data-en="A user account, so no registration is required"
+            >
+              Akaunti ya mtumiaji, hivyo hakuna usajili unaohitajika
+            </li>
+            <li
+              data-sw="Seva ya kupokea picha au matokeo yako"
+              data-en="A server that receives your photos or results"
+            >
+              Seva ya kupokea picha au matokeo yako
+            </li>
+            <li
+              data-sw="Mfumo wa analytics au ufuatiliaji wa matumizi yako"
+              data-en="An analytics or usage tracking system"
+            >
+              Mfumo wa analytics au ufuatiliaji wa matumizi yako
+            </li>
+            <li
+              data-sw="Cookies za kukutambua kama mtumiaji"
+              data-en="Cookies to identify you as a user"
+            >
+              Cookies za kukutambua kama mtumiaji
+            </li>
+          </ul>
+
+          <h2
+            data-sw="2. Data Inayohifadhiwa Kwenye Simu Yako"
+            data-en="2. Data Stored on Your Device"
+          >
+            2. Data Inayohifadhiwa Kwenye Simu Yako
+          </h2>
+          <p
+            data-sw="Data yote inayotengenezwa na M-Skana huhifadhiwa kwenye simu yako pekee kupitia hifadhi ya ndani ya kivinjari. Hii inaweza kujumuisha:"
+            data-en="All data generated by M-Skana is stored only on your phone through browser local storage. This may include:"
+          >
+            Data yote inayotengenezwa na M-Skana huhifadhiwa kwenye simu yako
+            pekee kupitia hifadhi ya ndani ya kivinjari. Hii inaweza kujumuisha:
+          </p>
+          <ul>
+            <li
+              data-sw="Historia ya ukaguzi wako, ikiwemo picha ndogo na matokeo"
+              data-en="Your scan history, including thumbnails and results"
+            >
+              Historia ya ukaguzi wako, ikiwemo picha ndogo na matokeo
+            </li>
+            <li
+              data-sw="Mipangilio ya lugha, kama Kiswahili au Kiingereza"
+              data-en="Language settings, such as Swahili or English"
+            >
+              Mipangilio ya lugha, kama Kiswahili au Kiingereza
+            </li>
+            <li
+              data-sw="Taarifa ya kukubali masharti ya matumizi"
+              data-en="Your terms of use acceptance status"
+            >
+              Taarifa ya kukubali masharti ya matumizi
+            </li>
+          </ul>
+          <p
+            style="margin-top: var(--sp-3)"
+            data-sw="Unaweza kufuta data hii wakati wowote kupitia sehemu ya Historia kwa kuchagua Futa Yote, au kwa kufuta data ya kivinjari kwenye simu yako."
+            data-en="You can delete this data at any time from the History section by selecting Clear All, or by clearing browser data on your phone."
+          >
+            Unaweza kufuta data hii wakati wowote kupitia sehemu ya Historia kwa
+            kuchagua Futa Yote, au kwa kufuta data ya kivinjari kwenye simu
+            yako.
+          </p>
+
+          <h2 data-sw="3. Picha Zako" data-en="3. Your Photos">
+            3. Picha Zako
+          </h2>
+          <p
+            data-sw="Picha unazopiga au kuchagua kwa kutumia M-Skana hazitumwi nje ya simu yako. Uchambuzi wote wa AI hufanyika moja kwa moja kwenye kifaa chako, yaani on-device processing. Baada ya uchambuzi kukamilika, picha inaweza kuondolewa kwenye hifadhi ya muda ya programu kulingana na jinsi programu ilivyoundwa."
+            data-en="Photos you take or choose using M-Skana are not sent outside your phone. All AI analysis happens directly on your device, that is on-device processing. After analysis is complete, the image may be removed from temporary app storage depending on how the app is designed."
+          >
+            Picha unazopiga au kuchagua kwa kutumia M-Skana hazitumwi nje ya
+            simu yako. Uchambuzi wote wa AI hufanyika moja kwa moja kwenye kifaa
+            chako.
+          </p>
+
+          <h2 data-sw="4. Matumizi ya Mtandao" data-en="4. Network Usage">
+            4. Matumizi ya Mtandao
+          </h2>
+          <p
+            data-sw="M-Skana inaweza kuhitaji mtandao mara ya kwanza unapofungua programu ili kupakia faili muhimu za programu au mifano ya AI. Baada ya hapo, vipengele vikuu vya uchambuzi vinaweza kufanya kazi bila mtandao. Wakati wa kuchambua picha, programu haitumii seva ya mbali kuchakata picha zako, ikiwa mfumo wako umewekwa kufanya uchambuzi ndani ya simu."
+            data-en="M-Skana may require internet the first time you open the app to load essential app files or AI models. After that, core analysis features can run offline. While analyzing images, the app does not use remote servers to process your photos when your setup is configured for on device analysis."
+          >
+            M-Skana inaweza kuhitaji mtandao mara ya kwanza unapofungua programu
+            ili kupakia faili muhimu za programu au mifano ya AI. Baada ya hapo,
+            vipengele vikuu vya uchambuzi vinaweza kufanya kazi bila mtandao.
+          </p>
+
+          <h2 data-sw="5. Watoto" data-en="5. Children">5. Watoto</h2>
+          <p
+            data-sw="M-Skana haijaundwa mahsusi kwa watoto chini ya miaka 13. Kwa kuwa programu haikusanyi data ya kibinafsi, haitarajii kupokea taarifa binafsi kutoka kwa watoto."
+            data-en="M-Skana is not specifically designed for children under 13. Since the app does not collect personal data, it does not expect to receive personal information from children."
+          >
+            M-Skana haijaundwa mahsusi kwa watoto chini ya miaka 13. Kwa kuwa
+            programu haikusanyi data ya kibinafsi, haitarajii kupokea taarifa
+            binafsi kutoka kwa watoto.
+          </p>
+
+          <h2 data-sw="6. Mabadiliko ya sera" data-en="6. Policy Updates">
+            6. Mabadiliko ya sera
+          </h2>
+          <p
+            data-sw="Tunaweza kusasisha sera hii mara kwa mara ili kuendana na maboresho ya programu au mahitaji ya kisheria. Tukifanya mabadiliko, tutaweka toleo jipya kwenye ukurasa huu pamoja na tarehe ya kusasishwa."
+            data-en="We may update this policy from time to time to reflect app improvements or legal requirements. If we make changes, we will publish the updated version on this page with the revision date."
+          >
+            Tunaweza kusasisha sera hii mara kwa mara ili kuendana na maboresho
+            ya programu au mahitaji ya kisheria. Tukifanya mabadiliko, tutaweka
+            toleo jipya kwenye ukurasa huu pamoja na tarehe ya kusasishwa.
+          </p>
+
+          <h2 data-sw="7. Wasiliana nasi" data-en="7. Contact Us">
+            7. Wasiliana nasi
+          </h2>
+          <p
+            data-sw="Kwa swali lolote kuhusu faragha yako au sera hii, wasiliana nasi kupitia:"
+            data-en="For any question about your privacy or this policy, contact us through:"
+          >
+            Kwa swali lolote kuhusu faragha yako au sera hii, wasiliana nasi
+            kupitia:
+          </p>
+          <span class="material-icons footer-contact-icon" aria-hidden="true"
+            >support_agent</span
+          >
+          <span
+            data-sw="Msaada:"
+            data-en="Support:"
+            style="font-weight: var(--fw-semibold)"
+          >
+            Msaada:
+          </span>
+
+          <a
+            href="/support.html"
+            style="
+              color: var(--clr-brand);
+              display: inline-flex;
+              align-items: center;
+              gap: 4px;
+            "
+            data-sw="Wasiliana Nasi"
+            data-en="Contact Us"
+          >
+            Wasiliana Nasi
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Compact footer links. -->
+    <footer class="footer-slim" role="contentinfo">
+      <div class="container footer-slim-inner">
+        <span class="footer-slim-copy"
+          >© 2026 M-Skana. All rights reserved.</span
+        >
+        <div class="footer-slim-links">
+          <a href="/legal/privacy.html" class="footer-slim-link">Privacy</a>
+          <a href="/legal/terms.html" class="footer-slim-link">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts: page-specific and shared runtime modules. -->
+    <script src="/assets/js/core/storage.js"></script>
+    <script src="/assets/js/core/events.js"></script>
+    <script src="/assets/js/modules/language.js"></script>
+    <script src="/assets/js/modules/nav.js"></script>
+    <script src="/assets/js/modules/pwa.js"></script>
+    <script src="/assets/js/core/app.js"></script>
+
+    <!-- Mobile bottom navigation. -->
+    <nav class="pwa-bottom-nav" id="pwa-bottom-nav" aria-label="Menyu ya chini">
+      <a href="/index.html" class="pwa-nav-item" data-page="index">
+        <span class="material-icons" aria-hidden="true">home</span>
+        <span class="pwa-nav-label" data-sw="Nyumbani" data-en="Home"
+          >Nyumbani</span
+        >
+      </a>
+      <a href="/scan.html" class="pwa-nav-item" data-page="scan">
+        <span class="material-icons" aria-hidden="true">camera_alt</span>
+        <span class="pwa-nav-label" data-sw="Piga Picha" data-en="Scan"
+          >Piga Picha</span
+        >
+      </a>
+      <a href="/guide.html" class="pwa-nav-item" data-page="guide">
+        <span class="material-icons" aria-hidden="true">menu_book</span>
+        <span class="pwa-nav-label" data-sw="Mwongozo" data-en="Guide"
+          >Mwongozo</span
+        >
+      </a>
+      <a href="/about.html" class="pwa-nav-item" data-page="about">
+        <span class="material-icons" aria-hidden="true">info</span>
+        <span class="pwa-nav-label" data-sw="Kuhusu" data-en="About"
+          >Kuhusu</span
+        >
+      </a>
+    </nav>
+  </body>
+</html>

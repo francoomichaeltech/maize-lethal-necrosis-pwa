@@ -1,0 +1,240 @@
+<!doctype html>
+<!-- offline.html - Smart offline fallback that helps users navigate to cached pages. -->
+<html lang="sw" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>M-Skana - Nje ya Mtandao</title>
+    <meta name="description" content="M-Skana iko tayari kutumia huduma zilizohifadhiwa ndani ya kifaa." />
+    <meta name="theme-color" content="#16A34A" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/pwa/apple-touch-180x180.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      html { background: #fafaf9; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        background: #fafaf9;
+        color: #1c1917;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 24px;
+      }
+      .offline-container {
+        max-width: 420px;
+        text-align: center;
+        background: #fff;
+        border-radius: 16px;
+        padding: 32px 24px;
+        border: 1px solid #e7e5e4;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      }
+      .offline-icon {
+        width: 64px;
+        height: 64px;
+        background: #f0fdf4;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 28px;
+      }
+      h1 {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0 0 8px;
+        color: #1c1917;
+      }
+      .subtitle {
+        font-size: 14px;
+        color: #57534e;
+        line-height: 1.5;
+        margin: 0 0 24px;
+      }
+      
+      /* Quick navigation grid */
+      .quick-nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .quick-nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 12px;
+        background: #f5f5f4;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #1c1917;
+        font-size: 13px;
+        font-weight: 500;
+        transition: background 0.2s, transform 0.2s;
+      }
+      .quick-nav-link:hover {
+        background: #e7e5e4;
+        transform: translateY(-2px);
+      }
+      .quick-nav-link:active {
+        transform: translateY(0);
+      }
+      .quick-nav-icon {
+        width: 40px;
+        height: 40px;
+        background: #fff;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      }
+      .quick-nav-link.primary .quick-nav-icon {
+        background: #16a34a;
+        color: #fff;
+      }
+      
+      /* Retry button */
+      .retry-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        background: #16a34a;
+        color: #fff;
+        border: 0;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        width: 100%;
+        justify-content: center;
+      }
+      .retry-btn:hover {
+        background: #15803d;
+      }
+      .retry-btn:active {
+        background: #166534;
+      }
+      
+      .offline-note {
+        font-size: 12px;
+        color: #a8a29e;
+        margin-top: 16px;
+        line-height: 1.5;
+      }
+      
+      @media (prefers-reduced-motion: reduce) {
+        .quick-nav-link, .retry-btn {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="offline-container">
+      <div class="offline-icon">
+        <span>🌾</span>
+      </div>
+      <h1>Hakuna Mtandao</h1>
+      <p class="subtitle">Lakini unaweza kutumia huduma zilizohifadhiwa kwenye kifaa chako.</p>
+      
+      <!-- Quick navigation to cached pages -->
+      <nav class="quick-nav" aria-label="Viungo vya haraka">
+        <a href="/index.html" class="quick-nav-link primary" id="nav-home">
+          <span class="quick-nav-icon">🏠</span>
+          <span>Nyumbani</span>
+        </a>
+        <a href="/scan.html" class="quick-nav-link primary" id="nav-scan">
+          <span class="quick-nav-icon">📷</span>
+          <span>Piga Picha</span>
+        </a>
+        <a href="/history.html" class="quick-nav-link" id="nav-history">
+          <span class="quick-nav-icon">📋</span>
+          <span>Historia</span>
+        </a>
+        <a href="/guide.html" class="quick-nav-link" id="nav-guide">
+          <span class="quick-nav-icon">📖</span>
+          <span>Mwongozo</span>
+        </a>
+        <a href="/about.html" class="quick-nav-link" id="nav-about">
+          <span class="quick-nav-icon">ℹ️</span>
+          <span>Kuhusu</span>
+        </a>
+        <a href="/support.html" class="quick-nav-link" id="nav-support">
+          <span class="quick-nav-icon">🆘</span>
+          <span>Msaada</span>
+        </a>
+      </nav>
+
+      <button class="retry-btn" onclick="handleRetry()">
+        <span>🔄</span>
+        <span>Jaribu Tena</span>
+      </button>
+      
+      <p class="offline-note">
+        Huduma hizi zinaweza kufanya kazi bila mtandao kama ziliwahi kufunguliwa.
+      </p>
+    </div>
+
+    <script>
+      function handleRetry() {
+        // Try to go back to the original requested page
+        if (document.referrer && document.referrer !== window.location.href) {
+          window.location.href = document.referrer;
+        } else {
+          window.location.reload();
+        }
+      }
+
+      // Check if pages are in cache and update UI accordingly
+      if ('caches' in window) {
+        var links = {
+          'nav-home': '/index.html',
+          'nav-scan': '/scan.html',
+          'nav-history': '/history.html',
+          'nav-guide': '/guide.html',
+          'nav-about': '/about.html',
+          'nav-support': '/support.html'
+        };
+        
+        Object.keys(links).forEach(function(id) {
+          var path = links[id];
+          caches.match(path, { ignoreSearch: true }).then(function(response) {
+            var el = document.getElementById(id);
+            if (el) {
+              if (response) {
+                el.style.opacity = '1';
+              } else {
+                // Check without leading slash
+                caches.match(path.substring(1), { ignoreSearch: true }).then(function(r2) {
+                  if (!r2) {
+                    el.style.opacity = '0.5';
+                    el.style.pointerEvents = 'none';
+                  }
+                });
+              }
+            }
+          }).catch(function() {});
+        });
+      }
+
+      // Log SW status for debugging
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then(function(reg) {
+          console.log('[Offline Page] SW ready:', reg.scope);
+        }).catch(function(err) {
+          console.warn('[Offline Page] SW error:', err);
+        });
+      }
+    </script>
+  </body>
+</html>
