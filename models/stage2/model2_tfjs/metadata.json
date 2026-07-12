@@ -1,0 +1,7 @@
+{
+  "classes": {
+    "healthy": 0,
+    "mln_infected": 1,
+    "other_disease": 2
+  }
+}
