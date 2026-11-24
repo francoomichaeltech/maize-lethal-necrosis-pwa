@@ -547,7 +547,7 @@ Tanzania
 
 ### Contact
 
-- **GitHub**: [michaelfrancoodev](https://github.com/michaelfrancoodev) | [rehemathomas](https://github.com/rehemathomas)
+- **GitHub**: [francoomichaeltech](https://github.com/francoomichaeltech) | [rehemathomas](https://github.com/rehemathomas)
 - **Supervisor Email**: sangan896@gmail.com
 
 ---
